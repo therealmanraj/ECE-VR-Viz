@@ -20,6 +20,7 @@ def ensure_collection(name, validator=None):
         opts["validator"] = validator
         opts["validationLevel"] = "moderate"  # use "strict" later if you want
     db.create_collection(name, **opts)
+    
 
 # --- 1) Create collections (light validators; you can tighten later) ---
 ensure_collection("users", {
@@ -62,10 +63,45 @@ ensure_collection("tokens", {
     }
 })
 
-# levels has embedded scenes[] (static)
-ensure_collection("levels")
-# levelFlows has embedded scenes[] (runtime)
-ensure_collection("levelFlows")
+ensure_collection("levels", {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["title", "published", "ready", "scenes", "createdAt", "updatedAt"],
+        "properties": {
+            "title": {"bsonType": "string"},
+            "image360": {"bsonType": "string"},
+            "scanningAudio": {"bsonType": "string"},
+            "childA": {"bsonType": "string"},
+            "childAStanding": {"bsonType": "bool"},
+            "conflictObjectLink": {"bsonType": "string"},
+            "propsLinks": {"bsonType": "array"},
+            "published": {"bsonType": "bool"},
+            "ready": {"bsonType": "bool"},
+            "scenes": {"bsonType": "array"},
+            "createdAt": {"bsonType": "date"},
+            "updatedAt": {"bsonType": "date"},
+        },
+    }
+})
+
+ensure_collection("levelFlows", {
+    "$jsonSchema": {
+        "bsonType": "object",
+        "required": ["userId", "levelId", "levelName", "levelComplete", "scenes", "createdAt", "updatedAt"],
+        "properties": {
+            "userId": {"bsonType": "objectId"},
+            "levelId": {"bsonType": "objectId"},
+            "levelName": {"bsonType": "string"},
+            "levelComplete": {"bsonType": "bool"},
+            "avatar": {"bsonType": "object"},
+            "personality": {"bsonType": "object"},
+            "scenes": {"bsonType": "array"},
+            "createdAt": {"bsonType": "date"},
+            "updatedAt": {"bsonType": "date"},
+        },
+    }
+})
+
 
 ensure_collection("trainingModels", {
     "$jsonSchema": {

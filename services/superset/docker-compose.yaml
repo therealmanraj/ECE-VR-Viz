@@ -14,9 +14,6 @@ x-superset-common: &superset-common
     SUPERSET_ADMIN_EMAIL: admin@superset.local
     SUPERSET_ADMIN_PASSWORD: admin
 
-    KEYCLOAK_CLIENT_ID: superset
-    KEYCLOAK_CLIENT_SECRET: lSsr36fR3LSPXaOeU61HyMV0RtceWUgo
-
     POSTGRES_DB: superset
     POSTGRES_USER: superset
     POSTGRES_PASSWORD: superset
@@ -25,8 +22,6 @@ x-superset-common: &superset-common
   volumes:
     - superset_home:/app/superset_home
     - ./superset_config.py:/app/pythonpath/superset_config.py:ro
-    - ./init_setup_roles.py:/app/pythonpath/init_setup_roles.py:ro
-    - ./logs:/app/superset_home/logs
 
 services:
   superset-db:
