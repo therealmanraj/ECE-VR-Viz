@@ -1,0 +1,34 @@
+services:
+  superset-db:
+    extends:
+      file: ./services/superset/docker-compose.yaml
+      service: superset-db
+
+  superset-init:
+    extends:
+      file: ./services/superset/docker-compose.yaml
+      service: superset-init
+
+  superset:
+    extends:
+      file: ./services/superset/docker-compose.yaml
+      service: superset
+    depends_on:
+      - trino
+
+  mongodb:
+    extends:
+      file: ./services/mongodb/docker-compose.yaml
+      service: mongodb
+
+  trino:
+    extends:
+      file: ./services/trino/docker-compose.yaml
+      service: trino
+    depends_on:
+      - mongodb
+
+volumes:
+  superset-db-data:
+  superset_home:
+  mongo_data:
