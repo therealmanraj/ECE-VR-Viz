@@ -5,8 +5,8 @@ SECRET_KEY = os.environ.get("SUPERSET_SECRET_KEY", "dev_secret_change_me")
 from flask_appbuilder.security.manager import AUTH_DB
 
 AUTH_TYPE = AUTH_DB
-AUTH_USER_REGISTRATION = True
-AUTH_USER_REGISTRATION_ROLE = "Gamma"  
+# AUTH_USER_REGISTRATION = True
+# AUTH_USER_REGISTRATION_ROLE = "Gamma"  
 
 
 WTF_CSRF_ENABLED = False
