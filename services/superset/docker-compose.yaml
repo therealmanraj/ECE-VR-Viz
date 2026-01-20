@@ -57,10 +57,11 @@ services:
           --username admin --firstname Sup --lastname Set \
           --email admin@superset.local --password admin &&
         echo "Step 3: Initializing Superset (roles, permissions)..."
-        superset init &&
-        echo "Step 4: Creating custom client roles..."
-        python /app/pythonpath/init_setup_roles.py &&
-        echo "✓ Superset initialization completed successfully"
+        superset init 
+        # &&
+        # echo "Step 4: Creating custom client roles..."
+        # python /app/pythonpath/init_setup_roles.py &&
+        # echo "✓ Superset initialization completed successfully"
 
   superset:
     <<: *superset-common

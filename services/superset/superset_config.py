@@ -23,3 +23,32 @@ FEATURE_FLAGS = {
 
 # Optional: keep logs quieter
 LOG_LEVEL = "INFO"
+
+ENABLE_UI_THEME_ADMINISTRATION = True
+
+# Enable theme admin in UI (optional)
+ENABLE_UI_THEME_ADMINISTRATION = True
+
+APP_NAME = "ECE Superset"
+
+# Your logo (put the file in /app/superset/static/assets/images/)
+# Or keep default
+# APP_ICON = "/static/assets/images/superset-logo-horiz.png"
+
+THEME_DEFAULT = {
+    "token": {
+        "colorPrimary": "#2563eb",   # primary accent (blue)
+        "colorLink": "#2563eb",
+        "borderRadius": 8,
+        "fontFamily": "Inter, Helvetica, Arial",
+        "fontSize": 14,
+        # "brandLogoUrl": APP_ICON,
+        "brandLogoHeight": "24px",
+    },
+    "algorithm": "default",
+}
+
+THEME_DARK = {
+    **THEME_DEFAULT,
+    "algorithm": "dark",
+}
