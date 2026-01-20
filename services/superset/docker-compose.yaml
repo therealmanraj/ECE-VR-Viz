@@ -22,6 +22,7 @@ x-superset-common: &superset-common
   volumes:
     - superset_home:/app/superset_home
     - ./superset_config.py:/app/pythonpath/superset_config.py:ro
+    - ./check_permissions.py:/app/pythonpath/check_permissions.py
 
 services:
   superset-db:
@@ -50,18 +51,30 @@ services:
       - /bin/sh
       - -c
       - |
-        echo "Step 1: Upgrading database schema..."
+        echo 'Step 1: Upgrading database...'
         superset db upgrade &&
-        echo "Step 2: Creating admin user..."
+
+        echo 'Step 2: Initializing Superset (creates roles)...'
+        superset init &&
+
+        echo 'Step 3: Creating admin user...'
         superset fab create-admin \
-          --username admin --firstname Sup --lastname Set \
+          --username admin --firstname Admin --lastname User \
           --email admin@superset.local --password admin &&
-        echo "Step 3: Initializing Superset (roles, permissions)..."
-        superset init 
-        # &&
-        # echo "Step 4: Creating custom client roles..."
-        # python /app/pythonpath/init_setup_roles.py &&
-        # echo "✓ Superset initialization completed successfully"
+
+        echo 'Step 4: Creating additional users...'
+        superset fab create-user \
+          --username analyst --firstname Data --lastname Analyst \
+          --email analyst@superset.local --password analyst \
+          --role Alpha &&
+
+        superset fab create-user \
+          --username viewer --firstname Dashboard --lastname Viewer \
+          --email viewer@superset.local --password viewer \
+          --role Gamma &&
+
+        echo 'All users created successfully!'
+        superset fab list-users
 
   superset:
     <<: *superset-common
