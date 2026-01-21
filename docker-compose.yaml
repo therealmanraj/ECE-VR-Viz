@@ -1,4 +1,14 @@
 services:
+  postgres:
+    extends:
+      file: ./services/postgres/docker-compose.yaml
+      service: postgres
+
+  adminer:
+    extends:
+      file: ./services/postgres/docker-compose.yaml
+      service: adminer
+
   superset-db:
     extends:
       file: ./services/superset/docker-compose.yaml
@@ -15,20 +25,17 @@ services:
       service: superset
     depends_on:
       - trino
-
-  mongodb:
-    extends:
-      file: ./services/mongodb/docker-compose.yaml
-      service: mongodb
+      - postgres
 
   trino:
     extends:
       file: ./services/trino/docker-compose.yaml
       service: trino
-    depends_on:
-      - mongodb
 
 volumes:
   superset-db-data:
+    external: false
   superset_home:
-  mongo_data:
+    external: false
+  postgres-db-volume:
+    external: false
