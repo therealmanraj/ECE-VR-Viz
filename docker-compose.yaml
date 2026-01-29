@@ -1,183 +1,38 @@
 services:
-  # PostgreSQL for application data
   postgres:
-    image: postgres:16
-    container_name: postgres
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: postgres
-      TZ: America/Vancouver
-    volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
-      - ./services/postgres/SQL-Scripts:/docker-entrypoint-initdb.d:ro
-    healthcheck:
-      test:
-        ["CMD-SHELL", 'pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}"']
-      interval: 10s
-      retries: 5
-      start_period: 5s
-    restart: always
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    extends:
+      file: ./services/postgres/docker-compose.yaml
+      service: postgres
 
-  # Adminer for PostgreSQL management
   adminer:
-    image: adminer:latest
-    container_name: adminer
-    environment:
-      ADMINER_DEFAULT_SERVER: postgres
-    depends_on:
-      postgres:
-        condition: service_healthy
-    ports:
-      - "0.0.0.0:8081:8080"
-    restart: always
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-        max-file: "3"
+    extends:
+      file: ./services/postgres/docker-compose.yaml
+      service: adminer
 
-  # Trino query engine
-  trino:
-    build:
-      context: ./services/trino
-      dockerfile: Dockerfile
-    container_name: trino
-    restart: unless-stopped
-    ports:
-      - "0.0.0.0:8080:8080"
-    volumes:
-      - ./services/trino/catalog:/etc/trino/catalog:ro
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  # Superset metadata database
   superset-db:
-    image: postgres:16
-    container_name: superset-db
-    environment:
-      POSTGRES_DB: superset
-      POSTGRES_USER: superset
-      POSTGRES_PASSWORD: superset
-      TZ: America/Vancouver
-    volumes:
-      - superset-db-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "superset"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 5s
-    restart: always
+    extends:
+      file: ./services/superset/docker-compose.yaml
+      service: superset-db
 
-  # Superset initialization
   superset-init:
-    build:
-      context: ./services/superset
-      dockerfile: Dockerfile
-    container_name: superset-init
-    environment:
-      SUPERSET_SECRET_KEY: jD9f7h2KqL1bXqV3zR5nY4tU8pW0sE6c
-      SUPERSET_LOG_LEVEL: INFO
-      SUPERSET_DATABASE_URI: postgresql+psycopg2://superset:superset@superset-db:5432/superset
-      SUPERSET_ADMIN_USERNAME: admin
-      SUPERSET_ADMIN_FIRSTNAME: Sup
-      SUPERSET_ADMIN_LASTNAME: Erset
-      SUPERSET_ADMIN_EMAIL: admin@superset.local
-      SUPERSET_ADMIN_PASSWORD: admin
-      POSTGRES_DB: superset
-      POSTGRES_USER: superset
-      POSTGRES_PASSWORD: superset
-      TZ: America/Vancouver
-    volumes:
-      - superset_home:/app/superset_home
-      - ./services/superset/superset_config.py:/app/pythonpath/superset_config.py:ro
-      - ./services/superset/check_permissions.py:/app/pythonpath/check_permissions.py
-    depends_on:
-      superset-db:
-        condition: service_healthy
-    entrypoint:
-      - /bin/sh
-      - -c
-      - |
-        echo 'Step 1: Upgrading database...'
-        superset db upgrade &&
-        echo 'Step 2: Initializing Superset (creates roles)...'
-        superset init &&
-        echo 'Step 3: Creating admin user...'
-        superset fab create-admin \
-          --username admin --firstname Admin --lastname User \
-          --email admin@superset.local --password admin &&
-        echo 'Step 4: Creating additional users...'
-        superset fab create-user \
-          --username analyst --firstname Data --lastname Analyst \
-          --email analyst@superset.local --password analyst \
-          --role Alpha &&
-        superset fab create-user \
-          --username viewer --firstname Dashboard --lastname Viewer \
-          --email viewer@superset.local --password viewer \
-          --role Gamma &&
-        echo 'All users created successfully!'
-        superset fab list-users
+    extends:
+      file: ./services/superset/docker-compose.yaml
+      service: superset-init
 
-  # Superset main application
   superset:
-    build:
-      context: ./services/superset
-      dockerfile: Dockerfile
-    container_name: superset
-    environment:
-      SUPERSET_SECRET_KEY: jD9f7h2KqL1bXqV3zR5nY4tU8pW0sE6c
-      SUPERSET_LOG_LEVEL: INFO
-      SUPERSET_DATABASE_URI: postgresql+psycopg2://superset:superset@superset-db:5432/superset
-      SUPERSET_ADMIN_USERNAME: admin
-      SUPERSET_ADMIN_FIRSTNAME: Sup
-      SUPERSET_ADMIN_LASTNAME: Erset
-      SUPERSET_ADMIN_EMAIL: admin@superset.local
-      SUPERSET_ADMIN_PASSWORD: admin
-      POSTGRES_DB: superset
-      POSTGRES_USER: superset
-      POSTGRES_PASSWORD: superset
-      TZ: America/Vancouver
-    volumes:
-      - superset_home:/app/superset_home
-      - ./services/superset/superset_config.py:/app/pythonpath/superset_config.py:ro
-      - ./services/superset/check_permissions.py:/app/pythonpath/check_permissions.py
-    depends_on:
-      superset-db:
-        condition: service_healthy
-      superset-init:
-        condition: service_completed_successfully
-      trino:
-        condition: service_started
-      postgres:
-        condition: service_healthy
-    ports:
-      - "0.0.0.0:8079:8079"
-    command:
-      - gunicorn
-      - "superset.app:create_app()"
-      - --bind
-      - "0.0.0.0:8079"
-      - --workers
-      - "2"
-      - --timeout
-      - "120"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8079/health"]
-      interval: 15s
-      timeout: 5s
-      retries: 10
-      start_period: 30s
-    restart: unless-stopped
+    extends:
+      file: ./services/superset/docker-compose.yaml
+      service: superset
+
+  trino:
+    extends:
+      file: ./services/trino/docker-compose.yaml
+      service: trino
 
 volumes:
   superset-db-data:
+    external: false
   superset_home:
+    external: false
   postgres-db-volume:
+    external: false
