@@ -1,0 +1,52 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to VM
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY_ECE }}
+          VM_HOST: ${{ secrets.VM_HOST_ECE }}
+          VM_USER: ${{ secrets.VM_USER_ECE }}
+        run: |
+          # Setup SSH
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H $VM_HOST >> ~/.ssh/known_hosts
+
+          # Create project directory on VM
+          ssh -i ~/.ssh/deploy_key $VM_USER@$VM_HOST "mkdir -p /data/ece-vr-superset"
+
+          # Sync code to VM
+          rsync -avz -e "ssh -i ~/.ssh/deploy_key" \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            --exclude '__pycache__' \
+            --exclude '*.pyc' \
+            ./ $VM_USER@$VM_HOST:/data/ece-vr-superset/
+
+          # Deploy on VM
+          ssh -i ~/.ssh/deploy_key $VM_USER@$VM_HOST << 'EOF'
+            cd /data/ece-vr-superset
+            
+            # Stop existing containers
+            docker-compose down || true
+            
+            # Start services
+            docker-compose up -d
+            
+            # Show status
+            docker-compose ps
+          EOF
