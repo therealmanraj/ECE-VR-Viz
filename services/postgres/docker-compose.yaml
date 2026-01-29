@@ -26,9 +26,6 @@ services:
     image: adminer:latest
     environment:
       ADMINER_DEFAULT_SERVER: postgres
-    depends_on:
-      postgres:
-        condition: service_healthy
     ports:
       - "0.0.0.0:8081:8080"
     expose:
