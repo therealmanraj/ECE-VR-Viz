@@ -44,9 +44,6 @@ services:
 
   superset-init:
     <<: *superset-common
-    depends_on:
-      superset-db:
-        condition: service_healthy
     entrypoint:
       - /bin/sh
       - -c
@@ -78,11 +75,6 @@ services:
 
   superset:
     <<: *superset-common
-    depends_on:
-      superset-db:
-        condition: service_healthy
-      superset-init:
-        condition: service_completed_successfully
     ports:
       - "0.0.0.0:8079:8079"
     command:
