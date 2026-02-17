@@ -29,6 +29,10 @@ From the dropdown click on trino
 Add this url in the SQLALCHEMY URI
 
 ```bash
+trino://admin@trino:8080/mongo_app
+
+trino://admin@trino:8080/mongo_prod
+
 trino://admin@trino:8080/mongo/langara-dev
 ```
 
