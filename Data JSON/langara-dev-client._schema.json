@@ -1,0 +1,362 @@
+[{
+  "_id": {
+    "$oid": "6973bddc36522db8aaad165f"
+  },
+  "table": "attemptquizzes",
+  "fields": []
+},
+{
+  "_id": {
+    "$oid": "6973bddf36522db8aaad1660"
+  },
+  "table": "levelflows",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "userId",
+      "type": "ObjectId",
+      "hidden": false
+    },
+    {
+      "name": "levelName",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "levelNo",
+      "type": "bigint",
+      "hidden": false
+    },
+    {
+      "name": "avatarInfo",
+      "type": "row(\"ChildA\" varchar,\"ChildB\" varchar)",
+      "hidden": false
+    },
+    {
+      "name": "personality_childB",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "scene",
+      "type": "array(row(\"sceneNo\" bigint,\"purpose\" varchar,\"userPhysicalInteraction\" boolean,\"conversations\" array(row(\"text\" varchar,\"type\" varchar,\"isCorrect\" boolean,\"blame\" boolean,\"_id\" ObjectId,\"create\" timestamp(3))),\"sceneComplete\" boolean,\"_id\" ObjectId,\"create\" timestamp(3)))",
+      "hidden": false
+    },
+    {
+      "name": "levelComplete",
+      "type": "boolean",
+      "hidden": false
+    },
+    {
+      "name": "create",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "update",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "__v",
+      "type": "bigint",
+      "hidden": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6973bde136522db8aaad1661"
+  },
+  "table": "levels",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "title",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "scanningAudio",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "image360",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "childA",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "objectOfConflicts",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "published",
+      "type": "boolean",
+      "hidden": false
+    },
+    {
+      "name": "scenes",
+      "type": "row(\"_pos1\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos2\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos3\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos4\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos5\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos6\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos7\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos8\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos9\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId),\"_pos10\" row(\"sceneNo\" bigint,\"sceneName\" varchar,\"childAAnimation\" varchar,\"childBAnimation\" varchar,\"speech\" array(row(\"speechText\" varchar,\"type\" varchar,\"audioUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"visemeUrl\" array(row(\"personality\" varchar,\"link\" varchar,\"_id\" ObjectId)),\"_id\" ObjectId)),\"physicalInteraction\" boolean,\"nlpModelLink\" varchar,\"nlpLastUpdate\" timestamp(3),\"blame\" row(\"blameActive\" boolean,\"blameModelLink\" varchar,\"blameLastUpdate\" timestamp(3)),\"hint\" varchar,\"create\" timestamp(3),\"_id\" ObjectId))",
+      "hidden": false
+    },
+    {
+      "name": "create",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "update",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "__v",
+      "type": "bigint",
+      "hidden": false
+    },
+    {
+      "name": "ready",
+      "type": "boolean",
+      "hidden": false
+    },
+    {
+      "name": "childAStanding",
+      "type": "boolean",
+      "hidden": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6973bde336522db8aaad1662"
+  },
+  "table": "prompttexts",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "id",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "promptText",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "create",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "update",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "__v",
+      "type": "bigint",
+      "hidden": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6973bde636522db8aaad1663"
+  },
+  "table": "questions",
+  "fields": []
+},
+{
+  "_id": {
+    "$oid": "6973bde836522db8aaad1664"
+  },
+  "table": "tokens",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "userId",
+      "type": "ObjectId",
+      "hidden": false
+    },
+    {
+      "name": "token",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "valid",
+      "type": "boolean",
+      "hidden": false
+    },
+    {
+      "name": "created",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "updatedAtTime",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "__v",
+      "type": "bigint",
+      "hidden": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6973bdea36522db8aaad1665"
+  },
+  "table": "trainingmodels",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "level",
+      "type": "row(\"id\" ObjectId,\"name\" varchar)",
+      "hidden": false
+    },
+    {
+      "name": "scene",
+      "type": "array(row(\"id\" ObjectId,\"name\" varchar,\"_id\" ObjectId))",
+      "hidden": false
+    },
+    {
+      "name": "modelLink",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "originalSentences",
+      "type": "array(varchar)",
+      "hidden": false
+    },
+    {
+      "name": "generatedSentences",
+      "type": "array(varchar)",
+      "hidden": false
+    },
+    {
+      "name": "testingSentences",
+      "type": "array(varchar)",
+      "hidden": false
+    },
+    {
+      "name": "accuracy",
+      "type": "bigint",
+      "hidden": false
+    },
+    {
+      "name": "blame",
+      "type": "boolean",
+      "hidden": false
+    },
+    {
+      "name": "create",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "update",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "__v",
+      "type": "bigint",
+      "hidden": false
+    },
+    {
+      "name": "lastModelUpdate",
+      "type": "timestamp(3)",
+      "hidden": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6973bdec36522db8aaad1666"
+  },
+  "table": "users",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "userName",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "password",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "created",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "updatedAtTime",
+      "type": "timestamp(3)",
+      "hidden": false
+    },
+    {
+      "name": "__v",
+      "type": "bigint",
+      "hidden": false
+    },
+    {
+      "name": "ChildB",
+      "type": "varchar",
+      "hidden": false
+    },
+    {
+      "name": "children",
+      "type": "array(row(\"childB\" varchar,\"personality\" bigint))",
+      "hidden": false
+    },
+    {
+      "name": "personality",
+      "type": "bigint",
+      "hidden": false
+    },
+    {
+      "name": "role",
+      "type": "varchar",
+      "hidden": false
+    }
+  ]
+}]
