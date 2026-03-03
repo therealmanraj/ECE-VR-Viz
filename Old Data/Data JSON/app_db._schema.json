@@ -1,0 +1,265 @@
+[{
+  "_id": {
+    "$oid": "69949de270b271b2eba6bead"
+  },
+  "table": "users",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId"
+    },
+    {
+      "name": "userName",
+      "type": "varchar"
+    },
+    {
+      "name": "password",
+      "type": "varchar"
+    },
+    {
+      "name": "role",
+      "type": "varchar"
+    },
+    {
+      "name": "children",
+      "type": "array(row(\"childB\" varchar,\"personality\" bigint))"
+    },
+    {
+      "name": "created",
+      "type": "timestamp"
+    },
+    {
+      "name": "updatedAtTime",
+      "type": "timestamp"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69949de270b271b2eba6beae"
+  },
+  "table": "tokens",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "userId",
+      "type": "ObjectId"
+    },
+    {
+      "name": "token",
+      "type": "varchar"
+    },
+    {
+      "name": "valid",
+      "type": "boolean"
+    },
+    {
+      "name": "created",
+      "type": "timestamp"
+    },
+    {
+      "name": "updatedAtTime",
+      "type": "timestamp"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69949de270b271b2eba6beaf"
+  },
+  "table": "levels",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "title",
+      "type": "varchar"
+    },
+    {
+      "name": "scanningAudio",
+      "type": "varchar"
+    },
+    {
+      "name": "image360",
+      "type": "varchar"
+    },
+    {
+      "name": "childA",
+      "type": "varchar"
+    },
+    {
+      "name": "childAStanding",
+      "type": "boolean"
+    },
+    {
+      "name": "objectOfConflicts",
+      "type": "varchar"
+    },
+    {
+      "name": "propsOnTable",
+      "type": "varchar"
+    },
+    {
+      "name": "published",
+      "type": "boolean"
+    },
+    {
+      "name": "create",
+      "type": "timestamp"
+    },
+    {
+      "name": "update",
+      "type": "timestamp"
+    },
+    {
+      "name": "scenes",
+      "type": "array(row(\"sceneNo\" bigint,\"purpose\" varchar,\"userPhysicalInteraction\" boolean,\"conversations\" array(row(\"text\" varchar,\"type\" varchar,\"isCorrect\" boolean,\"blame\" boolean,\"_id\" ObjectId,\"create\" timestamp(3))),\"sceneComplete\" boolean,\"_id\" ObjectId,\"create\" timestamp(3)))"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69949de270b271b2eba6beb0"
+  },
+  "table": "levelflows",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "userId",
+      "type": "ObjectId"
+    },
+    {
+      "name": "levelId",
+      "type": "ObjectId"
+    },
+    {
+      "name": "levelName",
+      "type": "varchar"
+    },
+    {
+      "name": "avatarInfo",
+      "type": "json"
+    },
+    {
+      "name": "personality_childB",
+      "type": "varchar"
+    },
+    {
+      "name": "personality_childA",
+      "type": "varchar"
+    },
+    {
+      "name": "levelComplete",
+      "type": "boolean"
+    },
+    {
+      "name": "create",
+      "type": "timestamp"
+    },
+    {
+      "name": "update",
+      "type": "timestamp"
+    },
+    {
+      "name": "scene",
+      "type": "array(row(\"sceneNo\" bigint,\"purpose\" varchar,\"userPhysicalInteraction\" boolean,\"conversations\" array(row(\"text\" varchar,\"type\" varchar,\"isCorrect\" boolean,\"blame\" boolean,\"_id\" ObjectId,\"create\" timestamp(3))),\"sceneComplete\" boolean,\"_id\" ObjectId,\"create\" timestamp(3)))"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69949de270b271b2eba6beb1"
+  },
+  "table": "trainingmodels",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "level",
+      "type": "json"
+    },
+    {
+      "name": "scene",
+      "type": "json"
+    },
+    {
+      "name": "modelLink",
+      "type": "varchar"
+    },
+    {
+      "name": "lastModelUpdate",
+      "type": "timestamp"
+    },
+    {
+      "name": "originalSentences",
+      "type": "array"
+    },
+    {
+      "name": "generatedSentences",
+      "type": "array"
+    },
+    {
+      "name": "testingSentences",
+      "type": "array"
+    },
+    {
+      "name": "accuracy",
+      "type": "double"
+    },
+    {
+      "name": "blame",
+      "type": "boolean"
+    },
+    {
+      "name": "create",
+      "type": "timestamp"
+    },
+    {
+      "name": "update",
+      "type": "timestamp"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "69949de270b271b2eba6beb2"
+  },
+  "table": "prompttexts",
+  "fields": [
+    {
+      "name": "_id",
+      "type": "ObjectId",
+      "hidden": true
+    },
+    {
+      "name": "id",
+      "type": "varchar"
+    },
+    {
+      "name": "promptText",
+      "type": "varchar"
+    },
+    {
+      "name": "create",
+      "type": "timestamp"
+    },
+    {
+      "name": "update",
+      "type": "timestamp"
+    }
+  ]
+}]
