@@ -22,7 +22,7 @@ x-superset-common: &superset-common
   volumes:
     - superset_home:/app/superset_home
     - ./superset_config.py:/app/pythonpath/superset_config.py:ro
-    - ./check_permissions.py:/app/pythonpath/check_permissions.py
+    # - ./check_permissions.py:/app/pythonpath/check_permissions.py
 
 services:
   superset-db:
@@ -44,6 +44,12 @@ services:
 
   superset-init:
     <<: *superset-common
+    volumes:
+      - superset_home:/app/superset_home
+      - ./superset_config.py:/app/pythonpath/superset_config.py:ro
+      # - ./check_permissions.py:/app/pythonpath/check_permissions.py
+      - ./dashboards:/app/dashboards:ro
+      - ./setup_connections.py:/app/pythonpath/setup_connections.py:ro
     entrypoint:
       - /bin/sh
       - -c
@@ -71,7 +77,16 @@ services:
           --role Gamma &&
 
         echo 'All users created successfully!'
-        superset fab list-users
+        superset fab list-users &&
+
+        echo 'Step 5: Provisioning database connections...'
+        python /app/pythonpath/setup_connections.py &&
+
+        echo 'Step 6: Importing dashboards...'
+        for f in /app/dashboards/*.zip; do
+          [ -f "$f" ] && echo "Importing $f..." && superset import-dashboards --path "$f" || true
+        done
+        echo 'Dashboard import complete.'
 
   superset:
     <<: *superset-common
