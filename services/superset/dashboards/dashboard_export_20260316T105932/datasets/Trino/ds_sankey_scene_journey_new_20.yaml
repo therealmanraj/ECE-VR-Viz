@@ -22,7 +22,7 @@ sql: "-- Dataset Name: ds_sankey_scene_journey\n-- Replace 'Bad_Day' and 'Demo B
   \        THEN 1 END)                                                 AS wrong_responses\n\
   \        FROM levelflows lf\n        CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON)))\
   \ AS t(scene_obj)\n        CROSS JOIN UNNEST(CAST(json_extract(scene_obj, '$.conversations')\
-  \ AS ARRAY(JSON))) AS t2(conv_obj)\n        WHERE lf.personality_childb = 'Bad_Day'\n\
+  \ AS ARRAY(JSON))) AS t2(conv_obj)\n        WHERE lf.personality_childb = 'Foster_Care'\n\
   \          AND lf.levelname = 'Demo Birthday'\n        GROUP BY\n            lf._id,\n\
   \            lf.levelcomplete,\n            CAST(json_extract_scalar(scene_obj,\
   \ '$.sceneNo') AS BIGINT),\n            json_extract_scalar(scene_obj, '$.sceneComplete')\n\
