@@ -1,0 +1,63 @@
+table_name: as_prop_of_all_sessions_end_in_pass
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT completion_status AS completion_status, sum(session_count) AS \"SUM(session_count)\"\
+  \ \nFROM (SELECT\n    CASE WHEN lf.levelcomplete = true THEN 'Completed' ELSE 'Not\
+  \ Completed' END AS completion_status,\n    lf.levelname AS level_name,\n    u.username\
+  \ AS student_name,\n    COUNT(*) AS session_count\nFROM levelflows lf\nJOIN users\
+  \ u ON u._id = lf.userid\nWHERE u.role = 'student'\nGROUP BY \n    CASE WHEN lf.levelcomplete\
+  \ = true THEN 'Completed' ELSE 'Not Completed' END,\n    lf.levelname,\n    u.username\n\
+  ORDER BY completion_status\n) AS virtual_table GROUP BY completion_status ORDER\
+  \ BY \"SUM(session_count)\" DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 5d3004c9-fa94-4d16-a131-baa9e1c1c8f7
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: completion_status
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR(13)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: SUM(session_count)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

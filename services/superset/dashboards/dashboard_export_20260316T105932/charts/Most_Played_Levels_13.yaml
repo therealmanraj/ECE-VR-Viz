@@ -1,0 +1,92 @@
+slice_name: Most Played Levels
+description: null
+certified_by: null
+certification_details: null
+viz_type: pie
+params:
+  datasource: 13__table
+  viz_type: pie
+  groupby:
+  - level_name
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: total_sessions
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 81
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: aa058b84-c24b-428f-a6ba-62c3ca2839bb
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(total_sessions)
+    optionName: metric_zos1svuz0qb_qadlxmcd0hk
+  adhoc_filters: []
+  row_limit: 100
+  sort_by_metric: true
+  color_scheme: supersetColors
+  show_labels_threshold: 5
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  label_type: key
+  number_format: SMART_NUMBER
+  date_format: smart_date
+  show_labels: true
+  labels_outside: true
+  outerRadius: 70
+  innerRadius: 30
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: '{"datasource": {"id": 13, "type": "table"}, "force": false, "queries":
+  [{"filters": [], "extras": {"having": "", "where": ""}, "applied_time_extras": {},
+  "columns": ["level_name"], "metrics": [{"expressionType": "SIMPLE", "column": {"advanced_data_type":
+  null, "certification_details": null, "certified_by": null, "column_name": "total_sessions",
+  "description": null, "expression": null, "filterable": true, "groupby": true, "id":
+  81, "is_certified": false, "is_dttm": false, "python_date_format": null, "type":
+  "column", "type_generic": 0, "uuid": "aa058b84-c24b-428f-a6ba-62c3ca2839bb", "verbose_name":
+  null, "warning_markdown": null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning":
+  false, "hasCustomLabel": false, "label": "SUM(total_sessions)", "optionName": "metric_zos1svuz0qb_qadlxmcd0hk"}],
+  "orderby": [[{"expressionType": "SIMPLE", "column": {"advanced_data_type": null,
+  "certification_details": null, "certified_by": null, "column_name": "total_sessions",
+  "description": null, "expression": null, "filterable": true, "groupby": true, "id":
+  81, "is_certified": false, "is_dttm": false, "python_date_format": null, "type":
+  "column", "type_generic": 0, "uuid": "aa058b84-c24b-428f-a6ba-62c3ca2839bb", "verbose_name":
+  null, "warning_markdown": null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning":
+  false, "hasCustomLabel": false, "label": "SUM(total_sessions)", "optionName": "metric_zos1svuz0qb_qadlxmcd0hk"},
+  false]], "annotation_layers": [], "row_limit": 100, "series_limit": 0, "group_others_when_limit_reached":
+  false, "order_desc": true, "url_params": {}, "custom_params": {}, "custom_form_data":
+  {}, "post_processing": [{"operation": "contribution", "options": {"columns": ["SUM(total_sessions)"],
+  "rename_columns": ["SUM(total_sessions)__contribution"]}}]}], "form_data": {"datasource":
+  "13__table", "viz_type": "pie", "groupby": ["level_name"], "metric": {"expressionType":
+  "SIMPLE", "column": {"advanced_data_type": null, "certification_details": null,
+  "certified_by": null, "column_name": "total_sessions", "description": null, "expression":
+  null, "filterable": true, "groupby": true, "id": 81, "is_certified": false, "is_dttm":
+  false, "python_date_format": null, "type": "column", "type_generic": 0, "uuid":
+  "aa058b84-c24b-428f-a6ba-62c3ca2839bb", "verbose_name": null, "warning_markdown":
+  null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning": false, "hasCustomLabel":
+  false, "label": "SUM(total_sessions)", "optionName": "metric_zos1svuz0qb_qadlxmcd0hk"},
+  "adhoc_filters": [], "row_limit": 100, "sort_by_metric": true, "color_scheme": "supersetColors",
+  "show_labels_threshold": 5, "show_legend": true, "legendType": "scroll", "legendOrientation":
+  "top", "label_type": "key", "number_format": "SMART_NUMBER", "date_format": "smart_date",
+  "show_labels": true, "labels_outside": true, "outerRadius": 70, "innerRadius": 30,
+  "extra_form_data": {}, "dashboards": [], "force": false, "result_format": "json",
+  "result_type": "full"}, "result_format": "json", "result_type": "full"}'
+cache_timeout: null
+uuid: 23039467-342a-4341-a8ce-1e4ba9b6a347
+version: 1.0.0
+dataset_uuid: b0a6ca26-16ce-4c08-b33d-50b122b7e594

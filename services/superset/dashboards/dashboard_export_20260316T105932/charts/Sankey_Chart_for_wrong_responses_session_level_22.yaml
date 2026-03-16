@@ -1,0 +1,71 @@
+slice_name: Sankey Chart for wrong responses, session, level
+description: null
+certified_by: null
+certification_details: null
+viz_type: sankey_v2
+params:
+  datasource: 20__table
+  viz_type: sankey_v2
+  source: source
+  target: target
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2026-03-12T10:20:43.509572'
+      column_name: value
+      created_on: '2026-03-12T10:20:43.509571'
+      description: null
+      expression: null
+      extra: null
+      filterable: true
+      groupby: true
+      id: 126
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: 11208318-44c8-4e60-97b5-ab9362483d3c
+      verbose_name: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(value)
+    optionName: metric_pu1hf4vtbqh_x3j1gmjhyjd
+  adhoc_filters: []
+  row_limit: 1000
+  color_scheme: supersetColors
+  extra_form_data: {}
+  dashboards:
+  - 1
+  annotation_layers: []
+query_context: '{"datasource": {"id": 20, "type": "table"}, "force": false, "queries":
+  [{"filters": [], "extras": {"having": "", "where": ""}, "applied_time_extras": {},
+  "columns": [], "metrics": [{"expressionType": "SIMPLE", "column": {"advanced_data_type":
+  null, "changed_on": "2026-03-12T10:20:43.509572", "column_name": "value", "created_on":
+  "2026-03-12T10:20:43.509571", "description": null, "expression": null, "extra":
+  null, "filterable": true, "groupby": true, "id": 126, "is_active": true, "is_dttm":
+  false, "python_date_format": null, "type": "column", "type_generic": 0, "uuid":
+  "11208318-44c8-4e60-97b5-ab9362483d3c", "verbose_name": null}, "aggregate": "SUM",
+  "sqlExpression": null, "datasourceWarning": false, "hasCustomLabel": false, "label":
+  "SUM(value)", "optionName": "metric_pu1hf4vtbqh_x3j1gmjhyjd"}], "annotation_layers":
+  [], "row_limit": 1000, "series_limit": 0, "group_others_when_limit_reached": false,
+  "order_desc": true, "url_params": {}, "custom_params": {}, "custom_form_data": {},
+  "groupby": ["source", "target"]}], "form_data": {"datasource": "20__table", "viz_type":
+  "sankey_v2", "source": "source", "target": "target", "metric": {"expressionType":
+  "SIMPLE", "column": {"advanced_data_type": null, "changed_on": "2026-03-12T10:20:43.509572",
+  "column_name": "value", "created_on": "2026-03-12T10:20:43.509571", "description":
+  null, "expression": null, "extra": null, "filterable": true, "groupby": true, "id":
+  126, "is_active": true, "is_dttm": false, "python_date_format": null, "type": "column",
+  "type_generic": 0, "uuid": "11208318-44c8-4e60-97b5-ab9362483d3c", "verbose_name":
+  null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning": false, "hasCustomLabel":
+  false, "label": "SUM(value)", "optionName": "metric_pu1hf4vtbqh_x3j1gmjhyjd"}, "adhoc_filters":
+  [], "row_limit": 1000, "color_scheme": "supersetColors", "extra_form_data": {},
+  "dashboards": [1], "force": false, "result_format": "json", "result_type": "full"},
+  "result_format": "json", "result_type": "full"}'
+cache_timeout: null
+uuid: 43dd43e2-b86d-4866-8eac-ec9b1228d3b8
+version: 1.0.0
+dataset_uuid: d1e054ae-115a-45b5-811e-293f7fc351fc

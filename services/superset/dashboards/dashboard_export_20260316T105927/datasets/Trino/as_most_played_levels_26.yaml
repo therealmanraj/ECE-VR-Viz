@@ -1,0 +1,61 @@
+table_name: as_most_played_levels
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT level_name AS level_name, sum(total_sessions) AS \"SUM(total_sessions)\"\
+  \ \nFROM (SELECT\n    lf.levelname AS level_name,\n    COUNT(*) AS total_sessions,\n\
+  \    COUNT(DISTINCT lf.userid) AS unique_students\nFROM levelflows lf\nJOIN users\
+  \ u ON u._id = lf.userid\nWHERE u.role = 'student'\nGROUP BY lf.levelname\nORDER\
+  \ BY total_sessions DESC\n) AS virtual_table GROUP BY level_name ORDER BY \"SUM(total_sessions)\"\
+  \ DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: be1e9a6e-8376-4668-8470-d419d9351d51
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: SUM(total_sessions)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

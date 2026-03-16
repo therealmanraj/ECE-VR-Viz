@@ -1,0 +1,85 @@
+table_name: as_correct_response_rate_improve_or_decline
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT scene_no AS scene_no, child_a_identity AS child_a_identity, AVG(correct_rate_pct)\
+  \ AS \"AVG(correct_rate_pct)\" \nFROM (SELECT\n    lf.levelname AS level_name,\n\
+  \    lf.personality_childa AS child_a_identity,\n    u.username AS student_name,\n\
+  \    CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT) AS scene_no,\n\
+  \    COUNT(CASE WHEN json_extract_scalar(conv_obj, '$.type') = 'user' \n       \
+  \ THEN 1 END) AS total_user_responses,\n    SUM(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n        AND json_extract_scalar(conv_obj, '$.isCorrect') =\
+  \ 'true' \n        THEN 1 ELSE 0 END) AS correct_responses,\n    COALESCE(ROUND(\n\
+  \        100.0 * SUM(CASE WHEN json_extract_scalar(conv_obj, '$.type') = 'user'\n\
+  \            AND json_extract_scalar(conv_obj, '$.isCorrect') = 'true' \n      \
+  \      THEN 1 ELSE 0 END)\n        / NULLIF(COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user' \n            THEN 1 END), 0), 1\n    ), 0) AS correct_rate_pct\n\
+  FROM levelflows lf\nJOIN users u ON u._id = lf.userid\nCROSS JOIN UNNEST(CAST(lf.scene\
+  \ AS ARRAY(JSON))) AS t(scene_obj)\nCROSS JOIN UNNEST(CAST(json_extract(scene_obj,\
+  \ '$.conversations') AS ARRAY(JSON))) AS t2(conv_obj)\nWHERE u.role = 'student'\n\
+  GROUP BY lf.levelname, lf.personality_childa, u.username,\n    json_extract_scalar(scene_obj,\
+  \ '$.sceneNo')\nORDER BY level_name, scene_no\n) AS virtual_table GROUP BY scene_no,\
+  \ child_a_identity ORDER BY \"AVG(correct_rate_pct)\" DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 16571e4c-8625-4c1b-b022-8a6375e6465c
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: AVG(correct_rate_pct)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: child_a_identity
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: scene_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

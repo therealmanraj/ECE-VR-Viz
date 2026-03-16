@@ -1,0 +1,103 @@
+table_name: ds_sankey_scene_journey
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_sankey_scene_journey\n-- Replace Bad_Day and Demo Birthday\
+  \ with desired personality and level\n-- Wrap in outer SELECT to avoid Superset\
+  \ DDL/DML parse error on UNION ALL\nSELECT source, target, value\nFROM (\n    WITH\
+  \ student_progress AS (\n        -- Per session: find last completed scene\n   \
+  \     SELECT\n            lf._id                                               \
+  \       AS flow_id,\n            lf.levelcomplete,\n            MAX(CASE WHEN json_extract_scalar(scene_obj,\
+  \ '$.sceneComplete') = 'true'\n                 THEN CAST(json_extract_scalar(scene_obj,\
+  \ '$.sceneNo') AS BIGINT)\n                 ELSE 0 END)                        \
+  \                                    AS last_completed_scene\n        FROM levelflows\
+  \ lf\n        CROSS JOIN UNNEST(\n            CAST(lf.scene AS ARRAY(JSON))\n  \
+  \      ) AS t(scene_obj)\n        WHERE lf.personality_childb = 'Bad_Day'\n    \
+  \      AND lf.levelname = 'Demo Birthday'\n        GROUP BY lf._id, lf.levelcomplete\n\
+  \    ),\n    -- Keep best attempt per session (highest scene reached)\n    best_attempt\
+  \ AS (\n        SELECT flow_id, levelcomplete, last_completed_scene\n        FROM\
+  \ (\n            SELECT\n                flow_id, levelcomplete, last_completed_scene,\n\
+  \                ROW_NUMBER() OVER (\n                    PARTITION BY flow_id\n\
+  \                    ORDER BY last_completed_scene DESC\n                ) AS rn\n\
+  \            FROM student_progress\n        ) ranked\n        WHERE rn = 1\n   \
+  \ ),\n    flows AS (\n        -- Scene N \u2192 Scene N+1: use SEQUENCE to generate\
+  \ one row per transition\n        SELECT\n            CONCAT('Scene ', CAST(n AS\
+  \ VARCHAR))        AS source,\n            CONCAT('Scene ', CAST(n + 1 AS VARCHAR))\
+  \    AS target,\n            COUNT(*)                                    AS value\n\
+  \        FROM best_attempt\n        CROSS JOIN UNNEST(SEQUENCE(1, last_completed_scene\
+  \ - 1)) AS t(n)\n        WHERE last_completed_scene > 1\n        GROUP BY n\n\n\n\
+  \        UNION ALL\n\n\n        -- Dropped Off: students who stopped without completing\
+  \ the level\n        SELECT\n            CONCAT('Scene ', CAST(last_completed_scene\
+  \ AS VARCHAR)) AS source,\n            'Dropped Off'                           \
+  \                AS target,\n            COUNT(*)                              \
+  \                  AS value\n        FROM best_attempt\n        WHERE levelcomplete\
+  \ = false\n          AND last_completed_scene > 0\n        GROUP BY last_completed_scene\n\
+  \n\n        UNION ALL\n\n\n        -- Level Complete: students who finished the\
+  \ level\n        SELECT\n            CONCAT('Scene ', CAST(last_completed_scene\
+  \ AS VARCHAR)) AS source,\n            'Level Complete \u2705'                 \
+  \                     AS target,\n            COUNT(*)                         \
+  \                       AS value\n        FROM best_attempt\n        WHERE levelcomplete\
+  \ = true\n        GROUP BY last_completed_scene\n    )\n    SELECT * FROM flows\n\
+  ) journey\nORDER BY value DESC\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: cbd419f4-dcf1-44b0-8bdf-e5a598c86eef
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: target
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: source
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: value
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

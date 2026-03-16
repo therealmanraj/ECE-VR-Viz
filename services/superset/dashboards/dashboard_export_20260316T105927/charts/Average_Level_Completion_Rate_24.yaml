@@ -1,0 +1,55 @@
+slice_name: Average Level Completion Rate
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 22__table
+  viz_type: big_number_total
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: AVG(completion_rate_pct)
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 105
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: 319ef31e-139c-42a3-bcf9-2ee10283ec58
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(AVG(completion_rate_pct))
+    optionName: metric_duwp5mvuucm_00rkc2ncuxq8
+  adhoc_filters:
+  - clause: WHERE
+    subject: session_date
+    operator: TEMPORAL_RANGE
+    comparator: No filter
+    expressionType: SIMPLE
+  header_font_size: 0.4
+  subtitle_font_size: 0.15
+  metric_name_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 2
+query_context: '{"datasource":{"id":22,"type":"table"},"force":false,"queries":[{"filters":[{"col":"session_date","op":"TEMPORAL_RANGE","val":"No
+  filter"}],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"AVG(completion_rate_pct)","description":null,"expression":null,"filterable":true,"groupby":true,"id":105,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"319ef31e-139c-42a3-bcf9-2ee10283ec58","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(AVG(completion_rate_pct))","optionName":"metric_duwp5mvuucm_00rkc2ncuxq8"}],"annotation_layers":[],"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"22__table","viz_type":"big_number_total","metric":{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"AVG(completion_rate_pct)","description":null,"expression":null,"filterable":true,"groupby":true,"id":105,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"319ef31e-139c-42a3-bcf9-2ee10283ec58","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(AVG(completion_rate_pct))","optionName":"metric_duwp5mvuucm_00rkc2ncuxq8"},"adhoc_filters":[{"clause":"WHERE","subject":"session_date","operator":"TEMPORAL_RANGE","comparator":"No
+  filter","expressionType":"SIMPLE"}],"header_font_size":0.4,"subtitle_font_size":0.15,"metric_name_font_size":0.15,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","extra_form_data":{},"dashboards":[2],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: ff187933-3c6b-43b5-b2a8-5003bddc0889
+version: 1.0.0
+dataset_uuid: ca00f8b9-3191-4eac-8bb3-bb131bf412f3

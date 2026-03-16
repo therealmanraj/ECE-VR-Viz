@@ -1,0 +1,136 @@
+table_name: ds_student_scene_timing
+main_dttm_col: scene_start
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT\n    s.userid,\n    s.username,\n    s.scene_no,\n    s.student_avg_seconds,\n\
+  \    c.class_avg_seconds\nFROM (\n    SELECT\n        userid,\n        username,\n\
+  \        scene_no,\n        ROUND(AVG(CASE WHEN time_on_scene <= 600 THEN time_on_scene\
+  \ END), 0) AS student_avg_seconds\n    FROM (\n        SELECT\n            lf.userid,\n\
+  \            u.username,\n            CAST(json_extract_scalar(scene_obj, '$.sceneNo')\
+  \ AS BIGINT) AS scene_no,\n            COALESCE(\n                date_diff('second',\n\
+  \                    CAST(replace(replace(\n                        json_extract_scalar(json_extract(scene_obj,\
+  \ '$.create'), '$[\"$date\"]'),\n                        'T', ' '), 'Z', '') AS\
+  \ TIMESTAMP),\n                    LEAD(CAST(replace(replace(\n                \
+  \        json_extract_scalar(json_extract(scene_obj, '$.create'), '$[\"$date\"]'),\n\
+  \                        'T', ' '), 'Z', '') AS TIMESTAMP))\n                  \
+  \      OVER (PARTITION BY lf._id\n                              ORDER BY CAST(json_extract_scalar(scene_obj,\
+  \ '$.sceneNo') AS BIGINT))\n                ),\n                date_diff('second',\n\
+  \                    CAST(replace(replace(\n                        json_extract_scalar(json_extract(scene_obj,\
+  \ '$.create'), '$[\"$date\"]'),\n                        'T', ' '), 'Z', '') AS\
+  \ TIMESTAMP),\n                    CAST(lf.update AS TIMESTAMP)\n              \
+  \  )\n            ) AS time_on_scene\n        FROM levelflows lf\n        JOIN users\
+  \ u ON lf.userid = u._id\n        CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON)))\
+  \ AS t(scene_obj)\n    ) session_scenes\n    GROUP BY userid, username, scene_no\n\
+  ) s\nJOIN (\n    SELECT\n        scene_no,\n        ROUND(AVG(student_avg), 0) AS\
+  \ class_avg_seconds\n    FROM (\n        SELECT\n            userid,\n         \
+  \   scene_no,\n            AVG(CASE WHEN time_on_scene <= 600 THEN time_on_scene\
+  \ END) AS student_avg\n        FROM (\n            SELECT\n                lf.userid,\n\
+  \                CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT) AS\
+  \ scene_no,\n                COALESCE(\n                    date_diff('second',\n\
+  \                        CAST(replace(replace(\n                            json_extract_scalar(json_extract(scene_obj,\
+  \ '$.create'), '$[\"$date\"]'),\n                            'T', ' '), 'Z', '')\
+  \ AS TIMESTAMP),\n                        LEAD(CAST(replace(replace(\n         \
+  \                   json_extract_scalar(json_extract(scene_obj, '$.create'), '$[\"\
+  $date\"]'),\n                            'T', ' '), 'Z', '') AS TIMESTAMP))\n  \
+  \                          OVER (PARTITION BY lf._id\n                         \
+  \         ORDER BY CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT))\n\
+  \                    ),\n                    date_diff('second',\n             \
+  \           CAST(replace(replace(\n                            json_extract_scalar(json_extract(scene_obj,\
+  \ '$.create'), '$[\"$date\"]'),\n                            'T', ' '), 'Z', '')\
+  \ AS TIMESTAMP),\n                        CAST(lf.update AS TIMESTAMP)\n       \
+  \             )\n                ) AS time_on_scene\n            FROM levelflows\
+  \ lf\n            CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON))) AS t(scene_obj)\n\
+  \        ) class_scenes\n        GROUP BY userid, scene_no\n    ) per_student\n\
+  \    GROUP BY scene_no\n) c ON c.scene_no = s.scene_no\nORDER BY s.userid, s.scene_no"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 45236fa8-67cc-4be7-af92-156cdc40aaed
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: username
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: userid
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: OBJECTID
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: class_avg_seconds
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: student_avg_seconds
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: scene_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

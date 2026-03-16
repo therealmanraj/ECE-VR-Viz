@@ -1,0 +1,113 @@
+table_name: ds_student_vs_class_passrate
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_student_vs_class_passrate\n-- Student pass rate vs class\
+  \ average per level\nSELECT\n    lf.userid,\n    u.username,\n    lf.levelname,\n\
+  \    lf.personality_childb,\n    -- This student's pass rate\n    COALESCE(ROUND(\n\
+  \        100.0 * SUM(CASE WHEN lf.levelcomplete = true THEN 1 ELSE 0 END)\n    \
+  \    / NULLIF(COUNT(DISTINCT lf._id), 0), 1), 0)                  AS student_pass_rate_pct,\n\
+  \    -- Class average pass rate for the same level + personality\n    ROUND(AVG(COALESCE(\n\
+  \        100.0 * SUM(CASE WHEN lf.levelcomplete = true THEN 1 ELSE 0 END)\n    \
+  \    / NULLIF(COUNT(DISTINCT lf._id), 0), 0))\n        OVER (PARTITION BY lf.levelname,\
+  \ lf.personality_childb), 1)  AS class_avg_pass_rate_pct\nFROM levelflows lf\nJOIN\
+  \ users u ON lf.userid = u._id\nGROUP BY lf.userid, u.username, lf.levelname, lf.personality_childb\n\
+  ORDER BY u.username, lf.levelname\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: be22385d-2abc-4268-aa2f-ee59d1dcafbe
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: class_avg_pass_rate_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: student_pass_rate_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: personality_childb
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: levelname
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: username
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: userid
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: OBJECTID
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

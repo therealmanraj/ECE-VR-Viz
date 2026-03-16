@@ -1,0 +1,196 @@
+table_name: ds_student_session_summary
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_student_session_summary\n-- Fix: session metrics and blame\
+  \ rate calculated in separate CTEs\n-- to avoid row multiplication from double UNNEST\
+  \ inflating counts.\nSELECT\n    s.userid,\n    s.username,\n    s.levelname,\n\
+  \    s.personality_childb,\n    s.total_sessions,\n    s.levels_completed,\n   \
+  \ s.pass_rate_pct,\n    s.avg_scenes_reached,\n    s.total_minutes_played,\n   \
+  \ COALESCE(b.blame_rate_pct, 0)                                    AS blame_rate_pct\n\
+  FROM (\n    -- Session-level metrics: no conversation UNNEST, counts are clean\n\
+  \    SELECT\n        lf.userid,\n        u.username,\n        lf.levelname,\n  \
+  \      lf.personality_childb,\n        COUNT(DISTINCT lf._id)                  \
+  \                     AS total_sessions,\n        SUM(CASE WHEN lf.levelcomplete\
+  \ = true THEN 1 ELSE 0 END)     AS levels_completed,\n        COALESCE(ROUND(\n\
+  \            100.0 * SUM(CASE WHEN lf.levelcomplete = true THEN 1 ELSE 0 END)\n\
+  \            / NULLIF(COUNT(DISTINCT lf._id), 0), 1), 0)              AS pass_rate_pct,\n\
+  \        COALESCE(ROUND(\n            1.0 * SUM(sm.last_scene) / NULLIF(COUNT(DISTINCT\
+  \ lf._id), 0), 1), 0)\n                                                        \
+  \             AS avg_scenes_reached,\n        COALESCE(ROUND(\n            SUM(date_diff('second',\n\
+  \                CAST(lf.create AS TIMESTAMP),\n                CAST(lf.update AS\
+  \ TIMESTAMP))) / 60.0, 1), 0)        AS total_minutes_played\n    FROM levelflows\
+  \ lf\n    JOIN users u ON lf.userid = u._id\n    JOIN (\n        SELECT lf2._id,\n\
+  \               MAX(CAST(json_extract_scalar(s2, '$.sceneNo') AS BIGINT)) AS last_scene\n\
+  \        FROM levelflows lf2\n        CROSS JOIN UNNEST(CAST(lf2.scene AS ARRAY(JSON)))\
+  \ AS t(s2)\n        GROUP BY lf2._id\n    ) sm ON sm._id = lf._id\n    GROUP BY\
+  \ lf.userid, u.username, lf.levelname, lf.personality_childb\n) s\nLEFT JOIN (\n\
+  \    -- Blame rate: needs conversation UNNEST, calculated separately\n    SELECT\n\
+  \        lf.userid,\n        lf.levelname,\n        lf.personality_childb,\n   \
+  \     COALESCE(ROUND(\n            100.0 * COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n                               AND json_extract_scalar(conv_obj,\
+  \ '$.blame') = 'true' THEN 1 END)\n            / NULLIF(COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n                                THEN 1 END), 0), 1), 0)  \
+  \            AS blame_rate_pct\n    FROM levelflows lf\n    CROSS JOIN UNNEST(CAST(lf.scene\
+  \ AS ARRAY(JSON))) AS t(scene_obj)\n    CROSS JOIN UNNEST(CAST(json_extract(scene_obj,\
+  \ '$.conversations') AS ARRAY(JSON))) AS t2(conv_obj)\n    GROUP BY lf.userid, lf.levelname,\
+  \ lf.personality_childb\n) b ON b.userid = s.userid\n     AND b.levelname = s.levelname\n\
+  \     AND b.personality_childb = s.personality_childb\nORDER BY s.username, s.levelname\n\
+  \n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 4c2ab891-d911-4998-9077-97ceb6565ef6
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: blame_rate_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: pass_rate_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: avg_scenes_reached
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 17)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: total_minutes_played
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(27, 6)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: personality_childb
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: levelname
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: username
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: userid
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: OBJECTID
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: total_sessions
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: levels_completed
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

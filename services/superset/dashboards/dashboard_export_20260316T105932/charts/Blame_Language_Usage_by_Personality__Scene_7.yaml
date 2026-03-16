@@ -1,0 +1,101 @@
+slice_name: Blame Language Usage by Personality & Scene
+description: null
+certified_by: null
+certification_details: null
+viz_type: heatmap_v2
+params:
+  datasource: 7__table
+  viz_type: heatmap_v2
+  slice_id: 8
+  x_axis: scene_no
+  groupby: personality
+  metric:
+    aggregate: SUM
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: blame_rate_pct
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 40
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: f43868af-2edc-4602-a4f7-1f8efbbf78e0
+      verbose_name: null
+      warning_markdown: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: SUM(blame_rate_pct)
+    optionName: metric_ujhdh6n1ftq_sgk1x1cib18
+    sqlExpression: null
+  adhoc_filters: []
+  row_limit: 10000
+  sort_x_axis: alpha_asc
+  normalize_across: heatmap
+  legend_type: continuous
+  linear_color_scheme: superset_seq_1
+  border_color:
+    a: 1
+    b: 0
+    g: 0
+    r: 0
+  border_width: 0
+  xscale_interval: -1
+  yscale_interval: -1
+  left_margin: auto
+  bottom_margin: auto
+  value_bounds:
+  - null
+  - null
+  y_axis_format: SMART_NUMBER
+  x_axis_time_format: smart_date
+  show_legend: false
+  show_percentage: true
+  show_values: true
+  extra_form_data: {}
+  dashboards:
+  - 1
+  annotation_layers: []
+query_context: '{"datasource": {"id": 7, "type": "table"}, "force": false, "queries":
+  [{"filters": [], "extras": {"having": "", "where": ""}, "applied_time_extras": {},
+  "columns": [{"columnType": "BASE_AXIS", "sqlExpression": "scene_no", "label": "scene_no",
+  "expressionType": "SQL", "isColumnReference": true}, "personality"], "metrics":
+  [{"aggregate": "SUM", "column": {"advanced_data_type": null, "certification_details":
+  null, "certified_by": null, "column_name": "blame_rate_pct", "description": null,
+  "expression": null, "filterable": true, "groupby": true, "id": 40, "is_certified":
+  false, "is_dttm": false, "python_date_format": null, "type": "column", "type_generic":
+  0, "uuid": "f43868af-2edc-4602-a4f7-1f8efbbf78e0", "verbose_name": null, "warning_markdown":
+  null}, "datasourceWarning": false, "expressionType": "SIMPLE", "hasCustomLabel":
+  false, "label": "SUM(blame_rate_pct)", "optionName": "metric_ujhdh6n1ftq_sgk1x1cib18",
+  "sqlExpression": null}], "orderby": [["scene_no", true]], "annotation_layers": [],
+  "row_limit": 10000, "series_limit": 0, "group_others_when_limit_reached": false,
+  "order_desc": true, "url_params": {}, "custom_params": {}, "custom_form_data": {},
+  "post_processing": [{"operation": "rank", "options": {"metric": "SUM(blame_rate_pct)"}}]}],
+  "form_data": {"datasource": "7__table", "viz_type": "heatmap_v2", "slice_id": 8,
+  "x_axis": "scene_no", "groupby": "personality", "metric": {"aggregate": "SUM", "column":
+  {"advanced_data_type": null, "certification_details": null, "certified_by": null,
+  "column_name": "blame_rate_pct", "description": null, "expression": null, "filterable":
+  true, "groupby": true, "id": 40, "is_certified": false, "is_dttm": false, "python_date_format":
+  null, "type": "column", "type_generic": 0, "uuid": "f43868af-2edc-4602-a4f7-1f8efbbf78e0",
+  "verbose_name": null, "warning_markdown": null}, "datasourceWarning": false, "expressionType":
+  "SIMPLE", "hasCustomLabel": false, "label": "SUM(blame_rate_pct)", "optionName":
+  "metric_ujhdh6n1ftq_sgk1x1cib18", "sqlExpression": null}, "adhoc_filters": [], "row_limit":
+  10000, "sort_x_axis": "alpha_asc", "normalize_across": "heatmap", "legend_type":
+  "continuous", "linear_color_scheme": "superset_seq_1", "border_color": {"a": 1,
+  "b": 0, "g": 0, "r": 0}, "border_width": 0, "xscale_interval": -1, "yscale_interval":
+  -1, "left_margin": "auto", "bottom_margin": "auto", "value_bounds": [null, null],
+  "y_axis_format": "SMART_NUMBER", "x_axis_time_format": "smart_date", "show_legend":
+  false, "show_percentage": true, "show_values": true, "extra_form_data": {}, "dashboards":
+  [1], "force": false, "result_format": "json", "result_type": "full"}, "result_format":
+  "json", "result_type": "full"}'
+cache_timeout: null
+uuid: 9fca5b24-1054-4d81-ab44-6b3b64073290
+version: 1.0.0
+dataset_uuid: 95db7a9c-7b02-4ad5-b5db-133d19467270

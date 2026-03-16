@@ -1,0 +1,205 @@
+table_name: ds_student_scene_responses
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_student_scene_responses\n-- Correct vs wrong responses per\
+  \ scene for one student + class average\n-- userid filter applied in Superset native\
+  \ filter\nSELECT\n    lf.userid,\n    u.username,\n    lf.levelname,\n    lf.personality_childb,\n\
+  \    CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT)      AS scene_no,\n\
+  \    json_extract_scalar(scene_obj, '$.purpose')                      AS scene_purpose,\n\
+  \    -- Student-level counts\n    COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n               AND json_extract_scalar(conv_obj, '$.isCorrect')\
+  \ = 'true' THEN 1 END)\n                                                       \
+  \              AS correct_responses,\n    COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n               AND json_extract_scalar(conv_obj, '$.isCorrect')\
+  \ = 'false' THEN 1 END)\n                                                      \
+  \               AS wrong_responses,\n    COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n               AND json_extract_scalar(conv_obj, '$.blame')\
+  \ = 'true' THEN 1 END)\n                                                       \
+  \              AS blame_responses,\n    -- Class average correct responses at this\
+  \ scene (for comparison overlay)\n    ROUND(AVG(COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n                         AND json_extract_scalar(conv_obj,\
+  \ '$.isCorrect') = 'true' THEN 1 END))\n        OVER (PARTITION BY lf.levelname,\
+  \ lf.personality_childb,\n              CAST(json_extract_scalar(scene_obj, '$.sceneNo')\
+  \ AS BIGINT)), 1)\n                                                            \
+  \         AS class_avg_correct,\n    ROUND(AVG(COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user'\n                         AND json_extract_scalar(conv_obj,\
+  \ '$.isCorrect') = 'false' THEN 1 END))\n        OVER (PARTITION BY lf.levelname,\
+  \ lf.personality_childb,\n              CAST(json_extract_scalar(scene_obj, '$.sceneNo')\
+  \ AS BIGINT)), 1)\n                                                            \
+  \         AS class_avg_wrong\nFROM levelflows lf\nJOIN users u ON lf.userid = u._id\n\
+  CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON))) AS t(scene_obj)\nCROSS JOIN UNNEST(CAST(json_extract(scene_obj,\
+  \ '$.conversations') AS ARRAY(JSON))) AS t2(conv_obj)\nGROUP BY\n    lf.userid,\
+  \ u.username, lf.levelname, lf.personality_childb,\n    CAST(json_extract_scalar(scene_obj,\
+  \ '$.sceneNo') AS BIGINT),\n    json_extract_scalar(scene_obj, '$.purpose')\nORDER\
+  \ BY lf.userid, lf.levelname, scene_no\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 2f829e2a-4e46-4e17-838b-cbb2f5def4a5
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: personality_childb
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: scene_purpose
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: levelname
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: username
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: userid
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: OBJECTID
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: class_avg_correct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: class_avg_wrong
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: blame_responses
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: correct_responses
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: scene_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+- column_name: wrong_responses
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: ''
+  description: null
+  python_date_format: null
+  extra:
+    warning_markdown: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

@@ -1,0 +1,122 @@
+slice_name: Level Pass Rate by Child B Personality
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 3__table
+  viz_type: echarts_timeseries_bar
+  x_axis: personality_child_b
+  time_grain_sqla: P1D
+  x_axis_sort_asc: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: pass_rate_pct
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 18
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: 6fbde67d-6db1-408a-bf96-0b432352e865
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(pass_rate_pct)
+    optionName: metric_5putf2wm2j2_obgk2q5h0r
+  groupby:
+  - level_name
+  adhoc_filters: []
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: horizontal
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: supersetColors
+  time_shift_color: true
+  stack: null
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelInterval: auto
+  y_axis_format: SMART_NUMBER
+  y_axis_bounds:
+  - null
+  - null
+  truncateXAxis: true
+  rich_tooltip: true
+  showTooltipTotal: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards: []
+query_context: '{"datasource": {"id": 3, "type": "table"}, "force": false, "queries":
+  [{"filters": [], "extras": {"time_grain_sqla": "P1D", "having": "", "where": ""},
+  "applied_time_extras": {}, "columns": [{"timeGrain": "P1D", "columnType": "BASE_AXIS",
+  "sqlExpression": "personality_child_b", "label": "personality_child_b", "expressionType":
+  "SQL", "isColumnReference": true}, "level_name"], "metrics": [{"expressionType":
+  "SIMPLE", "column": {"advanced_data_type": null, "certification_details": null,
+  "certified_by": null, "column_name": "pass_rate_pct", "description": null, "expression":
+  null, "filterable": true, "groupby": true, "id": 18, "is_certified": false, "is_dttm":
+  false, "python_date_format": null, "type": "column", "type_generic": 0, "uuid":
+  "6fbde67d-6db1-408a-bf96-0b432352e865", "verbose_name": null, "warning_markdown":
+  null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning": false, "hasCustomLabel":
+  false, "label": "SUM(pass_rate_pct)", "optionName": "metric_5putf2wm2j2_obgk2q5h0r"}],
+  "orderby": [[{"expressionType": "SIMPLE", "column": {"advanced_data_type": null,
+  "certification_details": null, "certified_by": null, "column_name": "pass_rate_pct",
+  "description": null, "expression": null, "filterable": true, "groupby": true, "id":
+  18, "is_certified": false, "is_dttm": false, "python_date_format": null, "type":
+  "column", "type_generic": 0, "uuid": "6fbde67d-6db1-408a-bf96-0b432352e865", "verbose_name":
+  null, "warning_markdown": null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning":
+  false, "hasCustomLabel": false, "label": "SUM(pass_rate_pct)", "optionName": "metric_5putf2wm2j2_obgk2q5h0r"},
+  false]], "annotation_layers": [], "row_limit": 10000, "series_columns": ["level_name"],
+  "series_limit": 0, "group_others_when_limit_reached": false, "order_desc": true,
+  "url_params": {}, "custom_params": {}, "custom_form_data": {}, "time_offsets": [],
+  "post_processing": [{"operation": "pivot", "options": {"index": ["personality_child_b"],
+  "columns": ["level_name"], "aggregates": {"SUM(pass_rate_pct)": {"operator": "mean"}},
+  "drop_missing_columns": false}}, {"operation": "rename", "options": {"columns":
+  {"SUM(pass_rate_pct)": null}, "level": 0, "inplace": true}}, {"operation": "flatten"}]}],
+  "form_data": {"datasource": "3__table", "viz_type": "echarts_timeseries_bar", "x_axis":
+  "personality_child_b", "time_grain_sqla": "P1D", "x_axis_sort_asc": true, "metrics":
+  [{"expressionType": "SIMPLE", "column": {"advanced_data_type": null, "certification_details":
+  null, "certified_by": null, "column_name": "pass_rate_pct", "description": null,
+  "expression": null, "filterable": true, "groupby": true, "id": 18, "is_certified":
+  false, "is_dttm": false, "python_date_format": null, "type": "column", "type_generic":
+  0, "uuid": "6fbde67d-6db1-408a-bf96-0b432352e865", "verbose_name": null, "warning_markdown":
+  null}, "aggregate": "SUM", "sqlExpression": null, "datasourceWarning": false, "hasCustomLabel":
+  false, "label": "SUM(pass_rate_pct)", "optionName": "metric_5putf2wm2j2_obgk2q5h0r"}],
+  "groupby": ["level_name"], "adhoc_filters": [], "order_desc": true, "row_limit":
+  10000, "truncate_metric": true, "show_empty_columns": true, "comparison_type": "values",
+  "annotation_layers": [], "forecastPeriods": 10, "forecastInterval": 0.8, "orientation":
+  "horizontal", "x_axis_title_margin": 15, "y_axis_title_margin": 30, "y_axis_title_position":
+  "Left", "sort_series_type": "sum", "color_scheme": "supersetColors", "time_shift_color":
+  true, "stack": null, "only_total": true, "show_legend": true, "legendType": "scroll",
+  "legendOrientation": "top", "x_axis_time_format": "smart_date", "xAxisLabelInterval":
+  "auto", "y_axis_format": "SMART_NUMBER", "y_axis_bounds": [null, null], "truncateXAxis":
+  true, "rich_tooltip": true, "showTooltipTotal": true, "tooltipTimeFormat": "smart_date",
+  "extra_form_data": {}, "dashboards": [], "force": false, "result_format": "json",
+  "result_type": "full"}, "result_format": "json", "result_type": "full"}'
+cache_timeout: null
+uuid: 5f592012-9a8b-4c0a-bf5f-f5936ea06fe8
+version: 1.0.0
+dataset_uuid: b7af58bd-acaa-4751-ab2e-996a7c9e91c2

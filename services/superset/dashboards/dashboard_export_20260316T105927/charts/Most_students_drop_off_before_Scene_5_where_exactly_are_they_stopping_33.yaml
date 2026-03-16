@@ -1,0 +1,102 @@
+slice_name: "Most students drop off before Scene 5 \u2014 where exactly are they stopping?"
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 31__table
+  viz_type: echarts_timeseries_bar
+  x_axis: scene_no
+  time_grain_sqla: P1D
+  x_axis_sort_asc: true
+  metrics:
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: SUM(total_attempts)
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 127
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: BIGINT
+      type_generic: 0
+      uuid: 7dc9fae4-01ef-4705-8ba8-69a2a055ed05
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(SUM(total_attempts))
+    optionName: metric_9up01kd3y3k_w7qm2ohynd
+  - expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: SUM(scenes_completed)
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 128
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: 5e5752df-f7b9-4fb4-bfbb-1339dfcbbab7
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(SUM(scenes_completed))
+    optionName: metric_cisdviur21v_gqxiio9op1r
+  groupby:
+  - level_name
+  adhoc_filters: []
+  order_desc: true
+  row_limit: 10000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 30
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: supersetColors
+  time_shift_color: true
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  xAxisLabelInterval: auto
+  y_axis_format: SMART_NUMBER
+  y_axis_bounds:
+  - null
+  - null
+  truncateXAxis: true
+  rich_tooltip: true
+  showTooltipTotal: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 2
+query_context: '{"datasource":{"id":31,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"time_grain_sqla":"P1D","having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1D","columnType":"BASE_AXIS","sqlExpression":"scene_no","label":"scene_no","expressionType":"SQL","isColumnReference":true},"level_name"],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(total_attempts)","description":null,"expression":null,"filterable":true,"groupby":true,"id":127,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"BIGINT","type_generic":0,"uuid":"7dc9fae4-01ef-4705-8ba8-69a2a055ed05","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(total_attempts))","optionName":"metric_9up01kd3y3k_w7qm2ohynd"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(scenes_completed)","description":null,"expression":null,"filterable":true,"groupby":true,"id":128,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"5e5752df-f7b9-4fb4-bfbb-1339dfcbbab7","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(scenes_completed))","optionName":"metric_cisdviur21v_gqxiio9op1r"}],"orderby":[[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(total_attempts)","description":null,"expression":null,"filterable":true,"groupby":true,"id":127,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"BIGINT","type_generic":0,"uuid":"7dc9fae4-01ef-4705-8ba8-69a2a055ed05","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(total_attempts))","optionName":"metric_9up01kd3y3k_w7qm2ohynd"},false]],"annotation_layers":[],"row_limit":10000,"series_columns":["level_name"],"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["scene_no"],"columns":["level_name"],"aggregates":{"SUM(SUM(total_attempts))":{"operator":"mean"},"SUM(SUM(scenes_completed))":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"flatten"}]}],"form_data":{"datasource":"31__table","viz_type":"echarts_timeseries_bar","x_axis":"scene_no","time_grain_sqla":"P1D","x_axis_sort_asc":true,"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(total_attempts)","description":null,"expression":null,"filterable":true,"groupby":true,"id":127,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"BIGINT","type_generic":0,"uuid":"7dc9fae4-01ef-4705-8ba8-69a2a055ed05","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(total_attempts))","optionName":"metric_9up01kd3y3k_w7qm2ohynd"},{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(scenes_completed)","description":null,"expression":null,"filterable":true,"groupby":true,"id":128,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"5e5752df-f7b9-4fb4-bfbb-1339dfcbbab7","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(scenes_completed))","optionName":"metric_cisdviur21v_gqxiio9op1r"}],"groupby":["level_name"],"adhoc_filters":[],"order_desc":true,"row_limit":10000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":30,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"supersetColors","time_shift_color":true,"only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","xAxisLabelInterval":"auto","y_axis_format":"SMART_NUMBER","y_axis_bounds":[null,null],"truncateXAxis":true,"rich_tooltip":true,"showTooltipTotal":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[2],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 7aa1d1b4-7492-44c1-9ba6-3f7a8059be84
+version: 1.0.0
+dataset_uuid: 6ce3a052-ce57-4922-99be-4b9cc47a8f49

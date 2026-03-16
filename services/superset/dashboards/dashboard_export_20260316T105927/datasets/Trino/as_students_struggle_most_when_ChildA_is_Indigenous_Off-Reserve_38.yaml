@@ -1,0 +1,79 @@
+table_name: 'as_students_struggle_most_when_ChildA_is_Indigenous_Off-Reserve '
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT child_b_personality AS child_b_personality, child_a_identity AS child_a_identity,\
+  \ AVG(pass_rate_pct) AS \"AVG(pass_rate_pct)\" \nFROM (SELECT\n    lf.personality_childa\
+  \ AS child_a_identity,\n    lf.personality_childb AS child_b_personality,\n    u.username\
+  \ AS student_name,\n    lf.levelname AS level_name,\n    COUNT(*) AS total_sessions,\n\
+  \    SUM(CASE WHEN lf.levelcomplete = true THEN 1 ELSE 0 END) AS completed_sessions,\n\
+  \    COALESCE(ROUND(\n        100.0 * SUM(CASE WHEN lf.levelcomplete = true THEN\
+  \ 1 ELSE 0 END)\n        / NULLIF(COUNT(*), 0), 1\n    ), 0) AS pass_rate_pct\n\
+  FROM levelflows lf\nJOIN users u ON u._id = lf.userid\nWHERE u.role = 'student'\n\
+  AND lf.personality_childa IS NOT NULL\nAND lf.personality_childb IS NOT NULL\nGROUP\
+  \ BY lf.personality_childa, lf.personality_childb, u.username, lf.levelname\nORDER\
+  \ BY child_b_personality, pass_rate_pct ASC\n) AS virtual_table GROUP BY child_b_personality,\
+  \ child_a_identity ORDER BY \"AVG(pass_rate_pct)\" DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 0456998c-455d-4208-a631-fe78d145dc34
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: AVG(pass_rate_pct)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: child_b_personality
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: child_a_identity
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

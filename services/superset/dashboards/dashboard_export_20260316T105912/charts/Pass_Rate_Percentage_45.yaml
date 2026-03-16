@@ -1,0 +1,51 @@
+slice_name: Pass Rate Percentage
+description: null
+certified_by: null
+certification_details: null
+viz_type: big_number_total
+params:
+  datasource: 42__table
+  viz_type: big_number_total
+  slice_id: 45
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      changed_on: '2026-03-13T10:06:24.784222'
+      column_name: pass_rate_pct
+      created_on: '2026-03-13T10:06:16.255421'
+      description: null
+      expression: ''
+      extra: '{"warning_markdown":null}'
+      filterable: true
+      groupby: true
+      id: 165
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: DECIMAL(38, 15)
+      type_generic: 0
+      uuid: ad793369-5be9-4c93-8930-9691d9e16013
+      verbose_name: null
+    aggregate: AVG
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: AVG(pass_rate_pct)
+    optionName: metric_ck9wi2wopos_cjuro5y0lr
+  adhoc_filters: []
+  header_font_size: 0.4
+  subtitle_font_size: 0.15
+  metric_name_font_size: 0.15
+  y_axis_format: SMART_NUMBER
+  time_format: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 3
+query_context: '{"datasource":{"id":42,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2026-03-13T10:06:24.784222","column_name":"pass_rate_pct","created_on":"2026-03-13T10:06:16.255421","description":null,"expression":"","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":165,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"DECIMAL(38,
+  15)","type_generic":0,"uuid":"ad793369-5be9-4c93-8930-9691d9e16013","verbose_name":null},"aggregate":"AVG","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"AVG(pass_rate_pct)","optionName":"metric_ck9wi2wopos_cjuro5y0lr"}],"annotation_layers":[],"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{}}],"form_data":{"datasource":"42__table","viz_type":"big_number_total","slice_id":45,"metric":{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"changed_on":"2026-03-13T10:06:24.784222","column_name":"pass_rate_pct","created_on":"2026-03-13T10:06:16.255421","description":null,"expression":"","extra":"{\"warning_markdown\":null}","filterable":true,"groupby":true,"id":165,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"DECIMAL(38,
+  15)","type_generic":0,"uuid":"ad793369-5be9-4c93-8930-9691d9e16013","verbose_name":null},"aggregate":"AVG","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"AVG(pass_rate_pct)","optionName":"metric_ck9wi2wopos_cjuro5y0lr"},"adhoc_filters":[],"header_font_size":0.4,"subtitle_font_size":0.15,"metric_name_font_size":0.15,"y_axis_format":"SMART_NUMBER","time_format":"smart_date","extra_form_data":{},"dashboards":[3],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: 3e6b6fcd-6fbb-49d7-9018-4d139b38a618
+version: 1.0.0
+dataset_uuid: 4c2ab891-d911-4998-9077-97ceb6565ef6

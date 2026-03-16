@@ -1,0 +1,99 @@
+table_name: ds_blame_vs_general_model_accuracy
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_blame_vs_general_model_accuracy\nSELECT\n    json_extract_scalar(tm.level,\
+  \ '$.name')                     AS level_name,\n    CASE WHEN tm.blame = true THEN\
+  \ 'Blame Model'\n         ELSE 'General Model' END                             \
+  \  AS model_type,\n    ROUND(AVG(tm.accuracy), 3)                              \
+  \    AS avg_accuracy,\n    MAX(tm.accuracy)                                    \
+  \        AS max_accuracy,\n    COUNT(*)                                        \
+  \            AS model_count\nFROM trainingmodels tm\nWHERE tm.accuracy IS NOT NULL\n\
+  GROUP BY json_extract_scalar(tm.level, '$.name'), tm.blame\nORDER BY level_name,\
+  \ model_type\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 9134818e-e6c5-40ea-af4d-c914aa96bbcc
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: model_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR(13)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: avg_accuracy
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: max_accuracy
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: model_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

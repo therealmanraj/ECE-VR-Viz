@@ -1,0 +1,65 @@
+table_name: as_childb_personalities_leave_largest_empathy_gaps
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT personality AS personality, AVG(completion_rate_pct) AS \"AVG(completion_rate_pct)\"\
+  \ \nFROM (SELECT\n    lf.personality_childb AS personality,\n    u.username AS student_name,\n\
+  \    lf.levelname AS level_name,\n    COUNT(*) AS total_sessions,\n    COALESCE(ROUND(\n\
+  \        100.0 * SUM(CASE WHEN lf.levelcomplete = true THEN 1 ELSE 0 END)\n    \
+  \    / NULLIF(COUNT(*), 0), 1\n    ), 0) AS completion_rate_pct,\n    COALESCE(ROUND(\n\
+  \        1.0 * COUNT(*)\n        / NULLIF(COUNT(DISTINCT lf.userid), 0), 2\n   \
+  \ ), 0) AS avg_attempts\nFROM levelflows lf\nJOIN users u ON u._id = lf.userid\n\
+  WHERE u.role = 'student'\nAND lf.personality_childb IS NOT NULL\nGROUP BY lf.personality_childb,\
+  \ u.username, lf.levelname\nORDER BY completion_rate_pct ASC\n) AS virtual_table\
+  \ GROUP BY personality ORDER BY \"AVG(completion_rate_pct)\" DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 7ba1eaea-a5e8-41f9-b144-b0cdd11144f8
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: AVG(completion_rate_pct)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: personality
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b
