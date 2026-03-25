@@ -6,6 +6,6 @@ services:
     ports:
       - "0.0.0.0:8080:8080"
     environment:
-      JAVA_TOOL_OPTIONS: "-Xmx3g -Xms1g"
+      JAVA_TOOL_OPTIONS: "-Xmx6g -Xms2g"
     volumes:
       - ./catalog:/etc/trino/catalog:ro

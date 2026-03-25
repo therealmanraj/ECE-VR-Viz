@@ -23,6 +23,11 @@ FEATURE_FLAGS = {
 }
 
 
+# Query timeout settings — increase these if large MongoDB queries time out
+SQLLAB_TIMEOUT = 600          # seconds SQLLab waits for a query result (default 30)
+SUPERSET_WEBSERVER_TIMEOUT = 600  # seconds before gunicorn kills a request
+SQL_MAX_ROW = 100000           # max rows returned to the browser
+
 LOG_LEVEL = "INFO"
 
 ENABLE_UI_THEME_ADMINISTRATION = True

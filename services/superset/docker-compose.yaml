@@ -100,7 +100,7 @@ services:
       - --workers
       - "4"
       - --timeout
-      - "300"
+      - "600"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8079/health"]
       interval: 15s
