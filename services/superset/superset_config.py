@@ -12,14 +12,15 @@ AUTH_TYPE = AUTH_DB
 WTF_CSRF_ENABLED = False
 TALISMAN_ENABLED = False
 
+# Stricter login rate limiting to block brute-force attempts
+AUTH_RATE_LIMITED = True
+AUTH_RATE_LIMIT = "10 per minute"
+
 FEATURE_FLAGS = {
     "ALERT_REPORTS": True,
     "DASHBOARD_RBAC": True,
     "GLOBAL_ASYNC_QUERIES": False,
 }
-
-# Disable async SQL Lab queries — no Celery worker is configured
-SQLLAB_ASYNC_TIME_LIMIT_SEC = 0
 
 
 LOG_LEVEL = "INFO"

@@ -34,11 +34,17 @@ with app.app_context():
             .first()
         )
         if existing:
-            print(f"[setup_connections] '{conn['database_name']}' already exists, skipping.")
+            if existing.allow_run_async:
+                existing.allow_run_async = False
+                db.session.commit()
+                print(f"[setup_connections] Fixed async mode on '{conn['database_name']}'.")
+            else:
+                print(f"[setup_connections] '{conn['database_name']}' already exists, skipping.")
         else:
             new_db = Database(
                 database_name=conn["database_name"],
                 sqlalchemy_uri=conn["sqlalchemy_uri"],
+                allow_run_async=False,
             )
             db.session.add(new_db)
             db.session.commit()
