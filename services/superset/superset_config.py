@@ -15,7 +15,11 @@ TALISMAN_ENABLED = False
 FEATURE_FLAGS = {
     "ALERT_REPORTS": True,
     "DASHBOARD_RBAC": True,
+    "GLOBAL_ASYNC_QUERIES": False,
 }
+
+# Disable async SQL Lab queries — no Celery worker is configured
+SQLLAB_ASYNC_TIME_LIMIT_SEC = 0
 
 
 LOG_LEVEL = "INFO"

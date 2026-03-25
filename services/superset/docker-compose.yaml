@@ -98,7 +98,7 @@ services:
       - --bind
       - "0.0.0.0:8079"
       - --workers
-      - "2"
+      - "4"
       - --timeout
       - "300"
     healthcheck:
