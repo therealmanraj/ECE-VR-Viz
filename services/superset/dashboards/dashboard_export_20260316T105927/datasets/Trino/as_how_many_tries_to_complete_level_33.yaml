@@ -1,0 +1,74 @@
+table_name: as_how_many_tries_to_complete_level
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT student_name AS student_name, level_name AS level_name, AVG(attempt_count)\
+  \ AS \"AVG(attempt_count)\" \nFROM (SELECT\n    lf.userid AS user_id,\n    u.username\
+  \ AS student_name,\n    lf.levelname AS level_name,\n    COUNT(*) AS attempt_count,\n\
+  \    MAX(CASE WHEN lf.levelcomplete = true THEN 1 ELSE 0 END) AS eventually_completed\n\
+  FROM levelflows lf\nJOIN users u ON u._id = lf.userid\nWHERE u.role = 'student'\n\
+  GROUP BY lf.userid, u.username, lf.levelname\nORDER BY attempt_count DESC\n) AS\
+  \ virtual_table GROUP BY student_name, level_name;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: dcbfec59-61b0-44f2-836a-5f985f89ba2e
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: AVG(attempt_count)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: student_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

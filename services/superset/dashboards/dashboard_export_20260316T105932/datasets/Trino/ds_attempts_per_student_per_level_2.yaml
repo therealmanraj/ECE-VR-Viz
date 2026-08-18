@@ -1,0 +1,85 @@
+table_name: ds_attempts_per_student_per_level
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_attempts_per_student_per_level\nSELECT\n    lf.userid  \
+  \                                                 AS user_id,\n    lf.levelname\
+  \                                                AS level_name,\n    COUNT(*)  \
+  \                                                  AS attempt_count,\n    MAX(CASE\
+  \ WHEN lf.levelcomplete = true THEN 1 ELSE 0 END)   AS eventually_completed\nFROM\
+  \ levelflows lf\nGROUP BY lf.userid, lf.levelname\nORDER BY attempt_count DESC\n\
+  \n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 3ac62c91-e3ee-4e3a-a6e2-ab4dc54d7053
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: user_id
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: OBJECTID
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: attempt_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: eventually_completed
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: INTEGER
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

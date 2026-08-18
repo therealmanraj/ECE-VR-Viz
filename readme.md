@@ -33,7 +33,7 @@ trino://admin@trino:8080/mongo_app
 
 trino://admin@trino:8080/mongo_prod
 
-trino://admin@trino:8080/mongo/langara-dev
+trino://admin@trino:8080/mongo/langara-dev-client
 ```
 
 ![A local image](./images/Step%204.png)

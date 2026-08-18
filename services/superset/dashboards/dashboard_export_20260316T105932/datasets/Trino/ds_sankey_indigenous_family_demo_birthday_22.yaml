@@ -1,0 +1,148 @@
+table_name: ds_sankey_indigenous_family_demo_birthday
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: |
+  SELECT source, target, value
+  FROM (
+      WITH scene_stats AS (
+          SELECT
+              lf._id AS flow_id,
+              lf.levelcomplete,
+              CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT) AS scene_no,
+              json_extract_scalar(scene_obj, '$.sceneComplete') = 'true' AS scene_complete,
+              COUNT(CASE
+                  WHEN json_extract_scalar(conv_obj, '$.type') = 'user'
+                  AND json_extract_scalar(conv_obj, '$.isCorrect') = 'false'
+                  THEN 1 END) AS wrong_responses
+          FROM levelflows lf
+          CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON))) AS t(scene_obj)
+          CROSS JOIN UNNEST(CAST(json_extract(scene_obj, '$.conversations') AS ARRAY(JSON))) AS t2(conv_obj)
+          WHERE lf.personality_childb = 'Indigenous Family'
+            AND lf.levelname = 'Demo Birthday'
+          GROUP BY
+              lf._id,
+              lf.levelcomplete,
+              CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT),
+              json_extract_scalar(scene_obj, '$.sceneComplete')
+      ),
+      best_session AS (
+          SELECT
+              flow_id,
+              levelcomplete,
+              MAX(CASE WHEN scene_complete THEN scene_no ELSE 0 END) AS last_completed_scene
+          FROM scene_stats
+          GROUP BY flow_id, levelcomplete
+      ),
+      wrong_per_scene AS (
+          SELECT
+              scene_no,
+              SUM(wrong_responses) AS total_wrong
+          FROM scene_stats
+          GROUP BY scene_no
+      ),
+      flows AS (
+          SELECT
+              CONCAT('Scene ', CAST(n AS VARCHAR)) AS source,
+              CONCAT('Scene ', CAST(n + 1 AS VARCHAR)) AS target,
+              COUNT(*) AS value
+          FROM best_session
+          CROSS JOIN UNNEST(SEQUENCE(1, last_completed_scene - 1)) AS t(n)
+          WHERE last_completed_scene > 1
+          GROUP BY n
+
+          UNION ALL
+
+          SELECT
+              CONCAT('Scene ', CAST(last_completed_scene AS VARCHAR)) AS source,
+              'Session Interrupted' AS target,
+              COUNT(*) AS value
+          FROM best_session
+          WHERE levelcomplete = false
+            AND last_completed_scene > 0
+          GROUP BY last_completed_scene
+
+          UNION ALL
+
+          SELECT
+              CONCAT('Scene ', CAST(last_completed_scene AS VARCHAR)) AS source,
+              'Level Complete \u2705' AS target,
+              COUNT(*) AS value
+          FROM best_session
+          WHERE levelcomplete = true
+          GROUP BY last_completed_scene
+
+          UNION ALL
+
+          SELECT
+              CONCAT('Scene ', CAST(scene_no AS VARCHAR)) AS source,
+              'Wrong Responses' AS target,
+              total_wrong AS value
+          FROM wrong_per_scene
+          WHERE total_wrong > 0
+      )
+      SELECT * FROM flows
+  ) journey
+  ORDER BY value DESC
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: d0000022-0000-4000-8000-000000000022
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: {}
+  warning_text: null
+columns:
+- column_name: target
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: source
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: value
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

@@ -1,0 +1,102 @@
+table_name: ds_scene_attempts_vs_completions
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_scene_attempts_vs_completions\n-- scene is JSON type in\
+  \ Trino \u2014 cast to ARRAY(JSON) then extract fields with json_extract_scalar\n\
+  SELECT\n    CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT) AS scene_no,\n\
+  \    lf.levelname                                                AS level_name,\n\
+  \    COUNT(*)                                                    AS total_attempts,\n\
+  \    SUM(CASE WHEN json_extract_scalar(scene_obj, '$.sceneComplete') = 'true' THEN\
+  \ 1 ELSE 0 END)      AS scenes_completed,\n    COALESCE(ROUND(\n        100.0 *\
+  \ SUM(CASE WHEN json_extract_scalar(scene_obj, '$.sceneComplete') = 'true' THEN\
+  \ 1 ELSE 0 END)\n        / NULLIF(COUNT(*), 0), 1\n    ), 0)                   \
+  \                                    AS scene_completion_pct\nFROM levelflows lf\n\
+  CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON))) AS t(scene_obj)\nGROUP BY json_extract_scalar(scene_obj,\
+  \ '$.sceneNo'), lf.levelname\nORDER BY lf.levelname, scene_no\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: fd8c5b25-db11-4046-9cfe-7e6393fb346d
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: scene_completion_pct
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: total_attempts
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: scenes_completed
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: scene_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

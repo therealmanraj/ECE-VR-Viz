@@ -1,0 +1,105 @@
+table_name: ds_student_child_empathy_scores
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_student_child_empathy_scores\n-- User's pre-assigned empathy/relationship\
+  \ score per child avatar\n-- Joins users.children JSON array to personality name\
+  \ mapping\n-- personality integer mapping: 0=Bad_Day, 1=War_Refugee, 2=Foster_Care,\n\
+  --   3=PDA_Autism, 4=Indigenous_Off-Reserve, 5=Indigenous_Family\nSELECT\n    u._id\
+  \                                                            AS userid,\n    u.username,\n\
+  \    json_extract_scalar(child_obj, '$.childB')                       AS childb_avatar,\n\
+  \    CAST(json_extract_scalar(child_obj, '$.personality') AS BIGINT)  AS empathy_score,\n\
+  \    CASE CAST(json_extract_scalar(child_obj, '$.personality') AS BIGINT)\n    \
+  \    WHEN 0 THEN 'Bad_Day'\n        WHEN 1 THEN 'War_Refugee'\n        WHEN 2 THEN\
+  \ 'Foster_Care'\n        WHEN 3 THEN 'PDA_Autism'\n        WHEN 4 THEN 'Indigenous\
+  \ Off-Reserve'\n        WHEN 5 THEN 'Indigenous Family'\n        ELSE 'Unknown'\n\
+  \    END                                                              AS personality_childb\n\
+  FROM users u\nCROSS JOIN UNNEST(CAST(u.children AS ARRAY(JSON))) AS t(child_obj)\n\
+  WHERE u.role IN ('student', 'instructor')\nORDER BY u.username, empathy_score DESC\n\
+  \n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 2764f457-cea3-45fb-a02a-f886a7c7fe7c
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: personality_childb
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR(22)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: childb_avatar
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: username
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: userid
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: OBJECTID
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: empathy_score
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

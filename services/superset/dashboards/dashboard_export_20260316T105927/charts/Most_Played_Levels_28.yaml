@@ -1,0 +1,60 @@
+slice_name: Most Played Levels
+description: null
+certified_by: null
+certification_details: null
+viz_type: pie
+params:
+  datasource: 26__table
+  viz_type: pie
+  groupby:
+  - level_name
+  metric:
+    expressionType: SIMPLE
+    column:
+      advanced_data_type: null
+      certification_details: null
+      certified_by: null
+      column_name: SUM(total_sessions)
+      description: null
+      expression: null
+      filterable: true
+      groupby: true
+      id: 113
+      is_certified: false
+      is_dttm: false
+      python_date_format: null
+      type: column
+      type_generic: 0
+      uuid: 8ca70bd6-4ff2-42f2-9a47-d141c709f3d6
+      verbose_name: null
+      warning_markdown: null
+    aggregate: SUM
+    sqlExpression: null
+    datasourceWarning: false
+    hasCustomLabel: false
+    label: SUM(SUM(total_sessions))
+    optionName: metric_6lom98ozu9p_2zbsqtdifo7
+  adhoc_filters: []
+  row_limit: 100
+  sort_by_metric: true
+  color_scheme: supersetColors
+  show_labels_threshold: 5
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  label_type: key
+  number_format: SMART_NUMBER
+  date_format: smart_date
+  show_labels: true
+  labels_outside: true
+  outerRadius: 71
+  donut: true
+  innerRadius: 41
+  extra_form_data: {}
+  dashboards:
+  - 2
+query_context: '{"datasource":{"id":26,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":["level_name"],"metrics":[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(total_sessions)","description":null,"expression":null,"filterable":true,"groupby":true,"id":113,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"8ca70bd6-4ff2-42f2-9a47-d141c709f3d6","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(total_sessions))","optionName":"metric_6lom98ozu9p_2zbsqtdifo7"}],"orderby":[[{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(total_sessions)","description":null,"expression":null,"filterable":true,"groupby":true,"id":113,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"8ca70bd6-4ff2-42f2-9a47-d141c709f3d6","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(total_sessions))","optionName":"metric_6lom98ozu9p_2zbsqtdifo7"},false]],"annotation_layers":[],"row_limit":100,"series_limit":0,"group_others_when_limit_reached":false,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"post_processing":[{"operation":"contribution","options":{"columns":["SUM(SUM(total_sessions))"],"rename_columns":["SUM(SUM(total_sessions))__contribution"]}}]}],"form_data":{"datasource":"26__table","viz_type":"pie","groupby":["level_name"],"metric":{"expressionType":"SIMPLE","column":{"advanced_data_type":null,"certification_details":null,"certified_by":null,"column_name":"SUM(total_sessions)","description":null,"expression":null,"filterable":true,"groupby":true,"id":113,"is_certified":false,"is_dttm":false,"python_date_format":null,"type":"column","type_generic":0,"uuid":"8ca70bd6-4ff2-42f2-9a47-d141c709f3d6","verbose_name":null,"warning_markdown":null},"aggregate":"SUM","sqlExpression":null,"datasourceWarning":false,"hasCustomLabel":false,"label":"SUM(SUM(total_sessions))","optionName":"metric_6lom98ozu9p_2zbsqtdifo7"},"adhoc_filters":[],"row_limit":100,"sort_by_metric":true,"color_scheme":"supersetColors","show_labels_threshold":5,"show_legend":true,"legendType":"scroll","legendOrientation":"top","label_type":"key","number_format":"SMART_NUMBER","date_format":"smart_date","show_labels":true,"labels_outside":true,"outerRadius":71,"donut":true,"innerRadius":41,"extra_form_data":{},"dashboards":[2],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: eb337aba-9510-45fa-8577-37bcec4392fa
+version: 1.0.0
+dataset_uuid: be1e9a6e-8376-4668-8470-d419d9351d51

@@ -1,0 +1,156 @@
+table_name: ds_childa_moderation_effect
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_childa_moderation_effect\n-- Same ChildB personality, different\
+  \ ChildA \u2014 pivot showing pass rate and blame rate per ChildA\nSELECT\n    lf.personality_childb\
+  \                                            AS childb_identity,\n    COALESCE(ROUND(\n\
+  \        100.0 * SUM(CASE WHEN lf.personality_childa = 'Indigenous Off-Reserve'\n\
+  \                         AND lf.levelcomplete = true THEN 1 ELSE 0 END)\n     \
+  \   / NULLIF(SUM(CASE WHEN lf.personality_childa = 'Indigenous Off-Reserve' THEN\
+  \ 1 ELSE 0 END), 0), 1\n    ), 0)                                              \
+  \              AS earline_pass_rate,\n    COALESCE(ROUND(\n        100.0 * SUM(CASE\
+  \ WHEN lf.personality_childa = 'Indigenous Family'\n                         AND\
+  \ lf.levelcomplete = true THEN 1 ELSE 0 END)\n        / NULLIF(SUM(CASE WHEN lf.personality_childa\
+  \ = 'Indigenous Family' THEN 1 ELSE 0 END), 0), 1\n    ), 0)                   \
+  \                                         AS gailiya_pass_rate,\n    COALESCE(ROUND(\n\
+  \        100.0 * SUM(CASE WHEN lf.personality_childa = 'War_Refugee'\n         \
+  \                AND lf.levelcomplete = true THEN 1 ELSE 0 END)\n        / NULLIF(SUM(CASE\
+  \ WHEN lf.personality_childa = 'War_Refugee' THEN 1 ELSE 0 END), 0), 1\n    ), 0)\
+  \                                                            AS mattie_pass_rate,\n\
+  \    COALESCE(ROUND(\n        100.0 * COUNT(CASE WHEN lf.personality_childa = 'Indigenous\
+  \ Off-Reserve'\n                           AND json_extract_scalar(conv_obj, '$.type')\
+  \ = 'user'\n                           AND json_extract_scalar(conv_obj, '$.blame')\
+  \ = 'true' THEN 1 END)\n        / NULLIF(COUNT(CASE WHEN lf.personality_childa =\
+  \ 'Indigenous Off-Reserve'\n                            AND json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user' THEN 1 END), 0), 1\n    ), 0)                             \
+  \                               AS earline_blame_rate,\n    COALESCE(ROUND(\n  \
+  \      100.0 * COUNT(CASE WHEN lf.personality_childa = 'Indigenous Family'\n   \
+  \                        AND json_extract_scalar(conv_obj, '$.type') = 'user'\n\
+  \                           AND json_extract_scalar(conv_obj, '$.blame') = 'true'\
+  \ THEN 1 END)\n        / NULLIF(COUNT(CASE WHEN lf.personality_childa = 'Indigenous\
+  \ Family'\n                            AND json_extract_scalar(conv_obj, '$.type')\
+  \ = 'user' THEN 1 END), 0), 1\n    ), 0)                                       \
+  \                     AS gailiya_blame_rate,\n    COALESCE(ROUND(\n        100.0\
+  \ * COUNT(CASE WHEN lf.personality_childa = 'War_Refugee'\n                    \
+  \       AND json_extract_scalar(conv_obj, '$.type') = 'user'\n                 \
+  \          AND json_extract_scalar(conv_obj, '$.blame') = 'true' THEN 1 END)\n \
+  \       / NULLIF(COUNT(CASE WHEN lf.personality_childa = 'War_Refugee'\n       \
+  \                     AND json_extract_scalar(conv_obj, '$.type') = 'user' THEN\
+  \ 1 END), 0), 1\n    ), 0)                                                     \
+  \       AS mattie_blame_rate\nFROM levelflows lf\nCROSS JOIN UNNEST(CAST(lf.scene\
+  \ AS ARRAY(JSON))) AS t(scene_obj)\nCROSS JOIN UNNEST(CAST(json_extract(scene_obj,\
+  \ '$.conversations') AS ARRAY(JSON))) AS t2(conv_obj)\nWHERE lf.avatarinfo IS NOT\
+  \ NULL\n  AND lf.personality_childb IS NOT NULL\nGROUP BY lf.personality_childb\n\
+  ORDER BY earline_pass_rate ASC\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: cd1fb04a-a58f-4197-991d-12c34ca2fea0
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: gailiya_blame_rate
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: gailiya_pass_rate
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: earline_blame_rate
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: mattie_blame_rate
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: earline_pass_rate
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: mattie_pass_rate
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DECIMAL(38, 15)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: childb_identity
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

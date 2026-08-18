@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - migrate-to-new-version
   workflow_dispatch:
 
 jobs:
@@ -13,6 +14,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set deploy directory
+        run: |
+          if [ "${{ github.ref_name }}" = "migrate-to-new-version" ]; then
+            echo "DEPLOY_DIR=/data/ece-vr-superset-stage" >> $GITHUB_ENV
+          else
+            echo "DEPLOY_DIR=/data/ece-vr-superset" >> $GITHUB_ENV
+          fi
 
       - name: Deploy to VM
         env:
@@ -27,7 +36,7 @@ jobs:
           ssh-keyscan -H $VM_HOST >> ~/.ssh/known_hosts
 
           # Create project directory on VM
-          ssh -i ~/.ssh/deploy_key $VM_USER@$VM_HOST "mkdir -p /data/ece-vr-superset"
+          ssh -i ~/.ssh/deploy_key $VM_USER@$VM_HOST "mkdir -p $DEPLOY_DIR"
 
           # Sync code to VM
           rsync -avz -e "ssh -i ~/.ssh/deploy_key" \
@@ -35,18 +44,18 @@ jobs:
             --exclude 'node_modules' \
             --exclude '__pycache__' \
             --exclude '*.pyc' \
-            ./ $VM_USER@$VM_HOST:/data/ece-vr-superset/
+            ./ $VM_USER@$VM_HOST:$DEPLOY_DIR/
 
           # Deploy on VM
-          ssh -i ~/.ssh/deploy_key $VM_USER@$VM_HOST << 'EOF'
-            cd /data/ece-vr-superset
-            
+          ssh -i ~/.ssh/deploy_key $VM_USER@$VM_HOST << EOF
+            cd $DEPLOY_DIR
+
             # Stop existing containers
             docker-compose down || true
-            
+
             # Start services
             docker-compose up -d
-            
+
             # Show status
             docker-compose ps
           EOF

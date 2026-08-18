@@ -1,0 +1,1119 @@
+dashboard_title: Student Performance Dashboard
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: false
+uuid: f8901ccb-18c0-4698-9155-266074420d58
+position:
+  CHART-explore-23-1:
+    children: []
+    id: CHART-explore-23-1
+    meta:
+      chartId: 23
+      height: 30
+      sliceName: Total Sessions
+      uuid: 3b76f6e2-2487-40dc-99e0-a87f598a0db4
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-xE3OYXH4lGGAHIUnoItX7
+    type: CHART
+  CHART-explore-24-1:
+    children: []
+    id: CHART-explore-24-1
+    meta:
+      chartId: 24
+      height: 31
+      sliceName: Average Level Completion Rate
+      uuid: ff187933-3c6b-43b5-b2a8-5003bddc0889
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-xE3OYXH4lGGAHIUnoItX7
+    type: CHART
+  CHART-explore-25-1:
+    children: []
+    id: CHART-explore-25-1
+    meta:
+      chartId: 25
+      height: 32
+      sliceName: Average Scene Dropoff Rate
+      uuid: ca117310-0f52-42a8-b64b-953dda583c49
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-xE3OYXH4lGGAHIUnoItX7
+    type: CHART
+  CHART-explore-26-1:
+    children: []
+    id: CHART-explore-26-1
+    meta:
+      chartId: 26
+      height: 33
+      sliceName: Average Attempts Per Level
+      uuid: 35a9a18b-538c-4d5c-b88d-6a9f61e49983
+      width: 3
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-xE3OYXH4lGGAHIUnoItX7
+    type: CHART
+  CHART-explore-27-1:
+    children: []
+    id: CHART-explore-27-1
+    meta:
+      chartId: 27
+      height: 50
+      sliceName: Student Activity Over Time
+      uuid: 91bdeb79-0aaa-4eaf-a12f-1a0796d17b94
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-c0-ueY6WBahutyl6MlmIa
+    type: CHART
+  CHART-explore-28-1:
+    children: []
+    id: CHART-explore-28-1
+    meta:
+      chartId: 28
+      height: 50
+      sliceName: Most Played Levels
+      uuid: eb337aba-9510-45fa-8577-37bcec4392fa
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-jjcQE2DYyiwA82G6eTJsQ
+    type: CHART
+  CHART-explore-29-1:
+    children: []
+    id: CHART-explore-29-1
+    meta:
+      chartId: 29
+      height: 50
+      sliceName: Which Child B Personality is Hardest for Students to Pass?
+      uuid: 58d363e9-a003-4627-bff9-23d6ccf3ff45
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - ROW-4D12ThtttQFaLC24SD2-t
+    type: CHART
+  CHART-explore-30-1:
+    children: []
+    id: CHART-explore-30-1
+    meta:
+      chartId: 30
+      height: 50
+      sliceName: What proportion of all sessions end in a pass?
+      uuid: 69d0ffc8-7036-4cf1-b55a-904050ff70b2
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-sbyWfFpd7jcz6LdZ33B1t
+    type: CHART
+  CHART-explore-31-1:
+    children: []
+    id: CHART-explore-31-1
+    meta:
+      chartId: 31
+      height: 50
+      sliceName: "Most students drop off between Scene 1 and 2 \u2014 few who make\
+        \ it past Scene 6 give up"
+      uuid: a7f0e2a3-bd9b-4696-b9e4-6ca5015534d4
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-sbyWfFpd7jcz6LdZ33B1t
+    type: CHART
+  CHART-explore-32-1:
+    children: []
+    id: CHART-explore-32-1
+    meta:
+      chartId: 32
+      height: 50
+      sliceName: How far into each level do students typically get before stopping?
+      uuid: c508eb3b-11f9-4cc3-9405-0c35df2a87bd
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-sbyWfFpd7jcz6LdZ33B1t
+    type: CHART
+  CHART-explore-33-1:
+    children: []
+    id: CHART-explore-33-1
+    meta:
+      chartId: 33
+      height: 50
+      sliceName: "Most students drop off before Scene 5 \u2014 where exactly are they\
+        \ stopping?"
+      uuid: 7aa1d1b4-7492-44c1-9ba6-3f7a8059be84
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-etGKSVdE9WfgE0SzR9gSY
+    type: CHART
+  CHART-explore-34-1:
+    children: []
+    id: CHART-explore-34-1
+    meta:
+      chartId: 34
+      height: 50
+      sliceName: Which scenes demand far more attempts than others?
+      uuid: 2517bf5a-3daa-49bb-ba48-4ab6a9dbac9d
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-etGKSVdE9WfgE0SzR9gSY
+    type: CHART
+  CHART-explore-35-1:
+    children: []
+    id: CHART-explore-35-1
+    meta:
+      chartId: 35
+      height: 50
+      sliceName: How many tries does it take a student to complete a level?
+      uuid: ffcc3731-b2c3-46e6-a328-0b62000f93e8
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-etGKSVdE9WfgE0SzR9gSY
+    type: CHART
+  CHART-explore-36-1:
+    children: []
+    id: CHART-explore-36-1
+    meta:
+      chartId: 36
+      height: 50
+      sliceName: Are students becoming more efficient across repeated attempts?
+      uuid: c7c8833d-ff02-4bab-8431-e93d7d808fa4
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-siJGLyEikxQuGwO1JstVp
+    type: CHART
+  CHART-explore-37-1:
+    children: []
+    id: CHART-explore-37-1
+    meta:
+      chartId: 37
+      height: 50
+      sliceName: Which Child B personalities leave the largest empathy gaps?
+      uuid: cf9d6158-c1d5-491f-9cfc-b3f6defa6e85
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-siJGLyEikxQuGwO1JstVp
+    type: CHART
+  CHART-explore-38-1:
+    children: []
+    id: CHART-explore-38-1
+    meta:
+      chartId: 38
+      height: 50
+      sliceName: Do students blame the child more as scenes progress?
+      uuid: 1ab0980e-6e5a-4b10-82f8-985b157dc20a
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-siJGLyEikxQuGwO1JstVp
+    type: CHART
+  CHART-explore-39-1:
+    children: []
+    id: CHART-explore-39-1
+    meta:
+      chartId: 39
+      height: 50
+      sliceName: Does correct response rate improve or decline as the level progresses?
+      uuid: 7dc62780-6e20-43cd-b5cc-9f60ee3263dc
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-JBi86kMmwpFVq8P2yt6f2
+    type: CHART
+  CHART-explore-40-1:
+    children: []
+    id: CHART-explore-40-1
+    meta:
+      chartId: 40
+      height: 50
+      sliceName: "Students struggle most when Child A is Indigenous Off-Reserve \u2014\
+        \ especially paired with Indigenous Family Child B"
+      uuid: 9d875025-07be-400b-a321-e6fedd890ac4
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-JBi86kMmwpFVq8P2yt6f2
+    type: CHART
+  CHART-explore-41-1:
+    children: []
+    id: CHART-explore-41-1
+    meta:
+      chartId: 41
+      height: 50
+      sliceName: Does the Child B avatar body affect whether students succeed?
+      uuid: 0b42ed35-eda7-4f72-862c-5b9a72130010
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-JBi86kMmwpFVq8P2yt6f2
+    type: CHART
+  CHART-explore-42-1:
+    children: []
+    id: CHART-explore-42-1
+    meta:
+      chartId: 42
+      height: 50
+      sliceName: "Indigenous personality types are tied to a single avatar body \u2014\
+        \ others show diverse representation"
+      uuid: f4cc6fb8-0ee7-420c-bb6e-7e53683ec996
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-3SYmmQV1Q6IscIKPS2b_x
+    type: CHART
+  CHART-explore-43-1:
+    children: []
+    id: CHART-explore-43-1
+    meta:
+      chartId: 43
+      height: 50
+      sliceName: "Blame detection models are as accurate as general response models\
+        \ \u2014 both above 85%"
+      uuid: 607c97d9-2bc6-487e-869f-8f3ef61fe620
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-3SYmmQV1Q6IscIKPS2b_x
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  GRID_ID:
+    children:
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Student Performance Dashboard
+    type: HEADER
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-3U4RoGJAMBQHy9HOc-Cr-:
+    children:
+    - CHART-explore-42-1
+    id: ROW-3U4RoGJAMBQHy9HOc-Cr-
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-AAxMCwlSF8PBifO5z-2ui
+    type: ROW
+  ROW-4D12ThtttQFaLC24SD2-t:
+    children:
+    - CHART-explore-29-1
+    id: ROW-4D12ThtttQFaLC24SD2-t
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    type: ROW
+  ROW-63cldva7kVLk9Evynb7xL:
+    children:
+    - CHART-explore-31-1
+    id: ROW-63cldva7kVLk9Evynb7xL
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB--_pTOfJnayYUbif72tEnb
+    type: ROW
+  ROW-6MAnw0vUO1eW09x_37v8m:
+    children:
+    - CHART-explore-43-1
+    id: ROW-6MAnw0vUO1eW09x_37v8m
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-0iy9tS_4pEivrVftHcDl0
+    type: ROW
+  ROW-AQ9BiSFtyJ2ZaJBsFBWTl:
+    children:
+    - CHART-explore-35-1
+    id: ROW-AQ9BiSFtyJ2ZaJBsFBWTl
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB--_pTOfJnayYUbif72tEnb
+    type: ROW
+  ROW-JM5c5Lxk6--S8J6ExO0AJ:
+    children:
+    - CHART-explore-34-1
+    id: ROW-JM5c5Lxk6--S8J6ExO0AJ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB--_pTOfJnayYUbif72tEnb
+    type: ROW
+  ROW-Lf8Hpl5EAwlIgtn25QqwT:
+    children:
+    - CHART-explore-33-1
+    id: ROW-Lf8Hpl5EAwlIgtn25QqwT
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB--_pTOfJnayYUbif72tEnb
+    type: ROW
+  ROW-M5erx1Q7j67heA4KBzHLG:
+    children:
+    - CHART-explore-36-1
+    id: ROW-M5erx1Q7j67heA4KBzHLG
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-2XFuse-8cd3BYMBmLMw6y
+    type: ROW
+  ROW-QNOLE4tCGWblFueA2_ERi:
+    children:
+    - CHART-explore-32-1
+    id: ROW-QNOLE4tCGWblFueA2_ERi
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB--_pTOfJnayYUbif72tEnb
+    type: ROW
+  ROW-SCLO4vWvkPkwdFg6zlJdt:
+    children:
+    - CHART-explore-38-1
+    id: ROW-SCLO4vWvkPkwdFg6zlJdt
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-2XFuse-8cd3BYMBmLMw6y
+    type: ROW
+  ROW-VBuMwvY-ymE2ynHLR4Bd7:
+    children:
+    - CHART-explore-40-1
+    id: ROW-VBuMwvY-ymE2ynHLR4Bd7
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-AAxMCwlSF8PBifO5z-2ui
+    type: ROW
+  ROW-W7CP9Dx_Tb3i7yJ36oDPK:
+    children:
+    - CHART-explore-37-1
+    id: ROW-W7CP9Dx_Tb3i7yJ36oDPK
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-2XFuse-8cd3BYMBmLMw6y
+    type: ROW
+  ROW-Zoc6oplWuZte9wkkulSrD:
+    children:
+    - CHART-explore-39-1
+    id: ROW-Zoc6oplWuZte9wkkulSrD
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-2XFuse-8cd3BYMBmLMw6y
+    type: ROW
+  ROW-c0-ueY6WBahutyl6MlmIa:
+    children:
+    - CHART-explore-27-1
+    id: ROW-c0-ueY6WBahutyl6MlmIa
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    type: ROW
+  ROW-jjcQE2DYyiwA82G6eTJsQ:
+    children:
+    - CHART-explore-28-1
+    id: ROW-jjcQE2DYyiwA82G6eTJsQ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    type: ROW
+  ROW-qMBlOIXFNzU8e5_eVNxJO:
+    children:
+    - CHART-explore-30-1
+    id: ROW-qMBlOIXFNzU8e5_eVNxJO
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB--_pTOfJnayYUbif72tEnb
+    type: ROW
+  ROW-wl0XfaA0_9Pow9Zd9qenX:
+    children:
+    - CHART-explore-41-1
+    id: ROW-wl0XfaA0_9Pow9Zd9qenX
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-AAxMCwlSF8PBifO5z-2ui
+    type: ROW
+  ROW-xE3OYXH4lGGAHIUnoItX7:
+    children:
+    - CHART-explore-23-1
+    - CHART-explore-24-1
+    - CHART-explore-25-1
+    - CHART-explore-26-1
+    id: ROW-xE3OYXH4lGGAHIUnoItX7
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    type: ROW
+  TAB--_pTOfJnayYUbif72tEnb:
+    children:
+    - ROW-qMBlOIXFNzU8e5_eVNxJO
+    - ROW-63cldva7kVLk9Evynb7xL
+    - ROW-QNOLE4tCGWblFueA2_ERi
+    - ROW-Lf8Hpl5EAwlIgtn25QqwT
+    - ROW-JM5c5Lxk6--S8J6ExO0AJ
+    - ROW-AQ9BiSFtyJ2ZaJBsFBWTl
+    id: TAB--_pTOfJnayYUbif72tEnb
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Where Do Students Struggle
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    type: TAB
+  TAB-0iy9tS_4pEivrVftHcDl0:
+    children:
+    - ROW-6MAnw0vUO1eW09x_37v8m
+    id: TAB-0iy9tS_4pEivrVftHcDl0
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Is the AI getting better?
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    type: TAB
+  TAB-2XFuse-8cd3BYMBmLMw6y:
+    children:
+    - ROW-M5erx1Q7j67heA4KBzHLG
+    - ROW-W7CP9Dx_Tb3i7yJ36oDPK
+    - ROW-SCLO4vWvkPkwdFg6zlJdt
+    - ROW-Zoc6oplWuZte9wkkulSrD
+    id: TAB-2XFuse-8cd3BYMBmLMw6y
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Is the App Teaching Empathy
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    type: TAB
+  TAB-AAxMCwlSF8PBifO5z-2ui:
+    children:
+    - ROW-VBuMwvY-ymE2ynHLR4Bd7
+    - ROW-wl0XfaA0_9Pow9Zd9qenX
+    - ROW-3U4RoGJAMBQHy9HOc-Cr-
+    id: TAB-AAxMCwlSF8PBifO5z-2ui
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Does Identity Shape the Experience
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    type: TAB
+  TAB-x6ql4hlqfG9eyLuv0QYaE:
+    children:
+    - ROW-xE3OYXH4lGGAHIUnoItX7
+    - ROW-c0-ueY6WBahutyl6MlmIa
+    - ROW-jjcQE2DYyiwA82G6eTJsQ
+    - ROW-4D12ThtttQFaLC24SD2-t
+    id: TAB-x6ql4hlqfG9eyLuv0QYaE
+    meta:
+      defaultText: Tab title
+      placeholder: Tab title
+      text: Overview
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - TABS-9OrQWIrDgUQSCP52HTWHv
+    type: TAB
+  TABS-9OrQWIrDgUQSCP52HTWHv:
+    children:
+    - TAB-x6ql4hlqfG9eyLuv0QYaE
+    - TAB--_pTOfJnayYUbif72tEnb
+    - TAB-2XFuse-8cd3BYMBmLMw6y
+    - TAB-AAxMCwlSF8PBifO5z-2ui
+    - TAB-0iy9tS_4pEivrVftHcDl0
+    id: TABS-9OrQWIrDgUQSCP52HTWHv
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: TABS
+metadata:
+  chart_configuration:
+    '27':
+      id: 27
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '28':
+      id: 28
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '29':
+      id: 29
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '30':
+      id: 30
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '32':
+      id: 32
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '33':
+      id: 33
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '35':
+      id: 35
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '36':
+      id: 36
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '37':
+      id: 37
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '38':
+      id: 38
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+    '39':
+      id: 39
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 40
+        - 41
+        - 42
+        - 43
+    '40':
+      id: 40
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 41
+        - 42
+        - 43
+    '41':
+      id: 41
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 42
+        - 43
+    '42':
+      id: 42
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 43
+    '43':
+      id: 43
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 23
+    - 24
+    - 25
+    - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 36
+    - 37
+    - 38
+    - 39
+    - 40
+    - 41
+    - 42
+    - 43
+  map_label_colors:
+    Not Completed: '#1FA8C9'
+    Completed: '#454E7C'
+    Demo Snack: '#1FA8C9'
+    Demo Train: '#5AC189'
+    Demo Birthday: '#454E7C'
+    Scene 6: '#1FA8C9'
+    Scene 7: '#454E7C'
+    Scene 8: '#5AC189'
+    Scene 5: '#FF7F44'
+    Drop Off: '#666666'
+    Scene 1: '#E04355'
+    Scene 2: '#FCC700'
+    Scene 3: '#A868B7'
+    Scene 4: '#3CCCCB'
+    Scene 10: '#A38F79'
+    Scene 11: '#8FD3E4'
+    Scene 9: '#A1A6BD'
+    SUM(SUM(total_attempts)), Demo Birthday: '#1FA8C9'
+    SUM(SUM(scenes_completed)), Demo Birthday: '#454E7C'
+    SUM(SUM(total_attempts)), Demo Snack: '#5AC189'
+    SUM(SUM(scenes_completed)), Demo Snack: '#FF7F44'
+    SUM(SUM(total_attempts)), Demo Train: '#666666'
+    SUM(SUM(scenes_completed)), Demo Train: '#E04355'
+    SUM(SUM(total_attempts)), Snack Table 3 fake: '#FCC700'
+    SUM(SUM(scenes_completed)), Snack Table 3 fake: '#A868B7'
+    Snack Table 3 fake: '#FF7F44'
+    SUM(AVG(completion_rate_pct)): '#1FA8C9'
+    Indigenous Family: '#1FA8C9'
+    Indigenous Off-Reserve: '#454E7C'
+    War_Refugee: '#5AC189'
+    AMAN: '#1FA8C9'
+    MAX: '#454E7C'
+    JAMES: '#5AC189'
+    RIVER: '#FF7F44'
+    MIN: '#666666'
+    EARLINE: '#E04355'
+    MATTIE: '#FCC700'
+    GAILIYA: '#A868B7'
+  color_scheme: ''
+  refresh_frequency: 0
+  color_scheme_domain: []
+  expanded_slices: {}
+  label_colors: {}
+  shared_label_colors:
+  - AMAN
+  - Demo Birthday
+  - Demo Snack
+  - Demo Train
+  - EARLINE
+  - GAILIYA
+  - Indigenous Family
+  - Indigenous Off-Reserve
+  - JAMES
+  - MATTIE
+  - MAX
+  - MIN
+  - RIVER
+  - Snack Table 3 fake
+  - War_Refugee
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+theme_uuid: null
+version: 1.0.0

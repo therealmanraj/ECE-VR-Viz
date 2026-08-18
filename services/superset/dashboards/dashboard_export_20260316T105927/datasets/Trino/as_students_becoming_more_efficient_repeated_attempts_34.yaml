@@ -1,0 +1,81 @@
+table_name: as_students_becoming_more_efficient_repeated_attempts
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT attempt_number AS attempt_number, level_name AS level_name, AVG(incorrect_before_correct)\
+  \ AS \"AVG(incorrect_before_correct)\" \nFROM (SELECT\n    lf.levelname AS level_name,\n\
+  \    u.username AS student_name,\n    ROW_NUMBER() OVER (\n        PARTITION BY\
+  \ lf.userid, lf.levelname\n        ORDER BY lf.\"create\" ASC\n    ) AS attempt_number,\n\
+  \    COUNT(CASE WHEN json_extract_scalar(conv_obj, '$.type') = 'user' \n       \
+  \   AND json_extract_scalar(conv_obj, '$.isCorrect') = 'false' \n          THEN\
+  \ 1 END) AS incorrect_before_correct,\n    COUNT(CASE WHEN json_extract_scalar(conv_obj,\
+  \ '$.type') = 'user' \n          THEN 1 END) AS total_responses\nFROM levelflows\
+  \ lf\nJOIN users u ON u._id = lf.userid\nCROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON)))\
+  \ AS t(scene_obj)\nCROSS JOIN UNNEST(CAST(json_extract(scene_obj, '$.conversations')\
+  \ AS ARRAY(JSON))) AS t2(conv_obj)\nWHERE u.role = 'student'\nGROUP BY lf.levelname,\
+  \ lf.userid, u.username, lf._id, lf.\"create\"\nORDER BY level_name, attempt_number\n\
+  ) AS virtual_table GROUP BY attempt_number, level_name ORDER BY \"AVG(incorrect_before_correct)\"\
+  \ DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: fa4f4529-ae27-463d-a62d-2e779179857f
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: AVG(incorrect_before_correct)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: attempt_number
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

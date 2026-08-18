@@ -1,0 +1,138 @@
+table_name: ds_nlp_accuracy_over_time
+main_dttm_col: update_date
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_nlp_accuracy_over_time\n-- trainingmodels: level is JSON\
+  \ type in Trino \u2014 use json_extract_scalar(tm.level, '$.name')\nSELECT\n   \
+  \ json_extract_scalar(tm.level, '$.name')                     AS level_name,\n \
+  \   tm.modellink                                                AS model_link,\n\
+  \    tm.accuracy                                                 AS accuracy_score,\n\
+  \    tm.blame                                                    AS is_blame_model,\n\
+  \    CAST(tm.lastmodelupdate AS DATE)                            AS update_date,\n\
+  \    CARDINALITY(tm.originalsentences)                          AS original_sentence_count,\n\
+  \    CARDINALITY(tm.generatedsentences)                         AS generated_sentence_count,\n\
+  \    tm.testingsentences                                        AS testing_sentences\n\
+  FROM trainingmodels tm\nWHERE tm.accuracy IS NOT NULL\nORDER BY update_date ASC\n\
+  \n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 3ae91f52-8b24-445e-9759-91d3ac4ded3c
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: model_link
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: is_blame_model
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BOOLEAN
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: update_date
+  verbose_name: null
+  is_dttm: true
+  is_active: true
+  type: DATE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: generated_sentence_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: original_sentence_count
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: accuracy_score
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: testing_sentences
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: JSON
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

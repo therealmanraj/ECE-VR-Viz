@@ -1,0 +1,111 @@
+table_name: ds_student_sankey
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "-- Dataset Name: ds_student_sankey\n-- Personal Sankey scoped to one student.\n\
+  -- Apply userid, levelname, personality_childb via Superset native filters.\n--\
+  \ Same 3-flow structure as macro Sankey:\n--   Flow 1: Scene N -> Scene N+1  (progression)\n\
+  --   Flow 2: Scene N -> Session Interrupted  (stopped here, not student choice)\n\
+  --   Flow 3: Scene N -> Wrong Responses  (total wrong responses at that scene)\n\
+  WITH scene_stats AS (\n    -- One row per session+scene with sceneComplete flag\
+  \ and wrong response count\n    SELECT\n        lf._id                         \
+  \                                 AS flow_id,\n        lf.userid,\n        lf.levelname,\n\
+  \        lf.personality_childb,\n        lf.levelcomplete,\n        CAST(json_extract_scalar(scene_obj,\
+  \ '$.sceneNo') AS BIGINT)     AS scene_no,\n        json_extract_scalar(scene_obj,\
+  \ '$.sceneComplete') = 'true'      AS scene_complete,\n        COUNT(CASE\n    \
+  \        WHEN json_extract_scalar(conv_obj, '$.type') = 'user'\n             AND\
+  \ json_extract_scalar(conv_obj, '$.isCorrect') = 'false'\n            THEN 1 END)\
+  \                                                 AS wrong_responses\n    FROM levelflows\
+  \ lf\n    CROSS JOIN UNNEST(CAST(lf.scene AS ARRAY(JSON))) AS t(scene_obj)\n   \
+  \ CROSS JOIN UNNEST(CAST(json_extract(scene_obj, '$.conversations')\n          \
+  \                 AS ARRAY(JSON))) AS t2(conv_obj)\n    GROUP BY\n        lf._id,\
+  \ lf.userid, lf.levelname, lf.personality_childb,\n        lf.levelcomplete,\n \
+  \       CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT),\n        json_extract_scalar(scene_obj,\
+  \ '$.sceneComplete')\n),\nsession_summary AS (\n    -- Per session: highest completed\
+  \ scene and levelcomplete flag\n    SELECT\n        flow_id, userid, levelname,\
+  \ personality_childb, levelcomplete,\n        MAX(CASE WHEN scene_complete THEN\
+  \ scene_no ELSE 0 END) AS last_completed_scene\n    FROM scene_stats\n    GROUP\
+  \ BY flow_id, userid, levelname, personality_childb, levelcomplete\n),\nwrong_per_scene\
+  \ AS (\n    -- Total wrong responses at each scene across all sessions\n    SELECT\
+  \ scene_no, SUM(wrong_responses) AS total_wrong\n    FROM scene_stats\n    GROUP\
+  \ BY scene_no\n)\n-- Flow 1: progression Scene N -> Scene N+1\nSELECT\n    CONCAT('Scene\
+  \ ', CAST(n AS VARCHAR))          AS source,\n    CONCAT('Scene ', CAST(n + 1 AS\
+  \ VARCHAR))      AS target,\n    COUNT(*)                                      AS\
+  \ value\nFROM session_summary\nCROSS JOIN UNNEST(SEQUENCE(1, last_completed_scene\
+  \ - 1)) AS t(n)\nWHERE last_completed_scene > 1\nGROUP BY n\n\n\nUNION ALL\n\n\n\
+  -- Flow 2: Session Interrupted \u2014 stopped at this scene (app close / class end)\n\
+  SELECT\n    CONCAT('Scene ', CAST(last_completed_scene AS VARCHAR))  AS source,\n\
+  \    'Session Interrupted'                                    AS target,\n    COUNT(*)\
+  \                                                 AS value\nFROM session_summary\n\
+  WHERE levelcomplete = false AND last_completed_scene > 0\nGROUP BY last_completed_scene\n\
+  \n\nUNION ALL\n\n\n-- Flow 3: Level Complete \u2014 reached scene 10 and passed\n\
+  SELECT\n    CONCAT('Scene ', CAST(last_completed_scene AS VARCHAR))  AS source,\n\
+  \    'Level Complete'                                         AS target,\n    COUNT(*)\
+  \                                                 AS value\nFROM session_summary\n\
+  WHERE levelcomplete = true\nGROUP BY last_completed_scene\n\n\nUNION ALL\n\n\n--\
+  \ Flow 4: Wrong Responses sink \u2014 total wrong at each scene\nSELECT\n    CONCAT('Scene\
+  \ ', CAST(scene_no AS VARCHAR))   AS source,\n    'Wrong Responses'            \
+  \                 AS target,\n    total_wrong                                  \
+  \ AS value\nFROM wrong_per_scene\nWHERE total_wrong > 0\nORDER BY value DESC\n\n"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 214532d2-4b92-49b1-9998-02b8024d54d4
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra: null
+  warning_text: null
+columns:
+- column_name: target
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: source
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+- column_name: value
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: null
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

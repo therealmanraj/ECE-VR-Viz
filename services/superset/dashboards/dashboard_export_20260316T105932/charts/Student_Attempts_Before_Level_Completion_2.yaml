@@ -1,0 +1,40 @@
+slice_name: Student Attempts Before Level Completion
+description: null
+certified_by: null
+certification_details: null
+viz_type: histogram_v2
+params:
+  datasource: 2__table
+  viz_type: histogram_v2
+  column: attempt_count
+  groupby:
+  - level_name
+  adhoc_filters: []
+  row_limit: 10000
+  bins: 15
+  normalize: false
+  cumulative: false
+  color_scheme: supersetColors
+  show_legend: true
+  x_axis_format: SMART_NUMBER
+  y_axis_format: SMART_NUMBER
+  extra_form_data: {}
+  dashboards: []
+  annotation_layers: []
+query_context: '{"datasource": {"id": 2, "type": "table"}, "force": false, "queries":
+  [{"filters": [], "extras": {"having": "", "where": ""}, "applied_time_extras": {},
+  "columns": ["level_name", "attempt_count"], "annotation_layers": [], "row_limit":
+  10000, "series_limit": 0, "group_others_when_limit_reached": false, "order_desc":
+  true, "url_params": {}, "custom_params": {}, "custom_form_data": {}, "post_processing":
+  [{"operation": "histogram", "options": {"column": "attempt_count", "groupby": ["level_name"],
+  "bins": 15, "cumulative": false, "normalize": false}}]}], "form_data": {"datasource":
+  "2__table", "viz_type": "histogram_v2", "column": "attempt_count", "groupby": ["level_name"],
+  "adhoc_filters": [], "row_limit": 10000, "bins": 15, "normalize": false, "cumulative":
+  false, "color_scheme": "supersetColors", "show_legend": true, "x_axis_format": "SMART_NUMBER",
+  "y_axis_format": "SMART_NUMBER", "extra_form_data": {}, "dashboards": [], "force":
+  false, "result_format": "json", "result_type": "full"}, "result_format": "json",
+  "result_type": "full"}'
+cache_timeout: null
+uuid: 31d37a18-5e59-4cba-823d-f8d093f97ba4
+version: 1.0.0
+dataset_uuid: 3ac62c91-e3ee-4e3a-a6e2-ab4dc54d7053

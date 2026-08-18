@@ -12,11 +12,21 @@ AUTH_TYPE = AUTH_DB
 WTF_CSRF_ENABLED = False
 TALISMAN_ENABLED = False
 
+# Stricter login rate limiting to block brute-force attempts
+AUTH_RATE_LIMITED = True
+AUTH_RATE_LIMIT = "10 per minute"
+
 FEATURE_FLAGS = {
     "ALERT_REPORTS": True,
     "DASHBOARD_RBAC": True,
+    "GLOBAL_ASYNC_QUERIES": False,
 }
 
+
+# Query timeout settings — increase these if large MongoDB queries time out
+SQLLAB_TIMEOUT = 600          # seconds SQLLab waits for a query result (default 30)
+SUPERSET_WEBSERVER_TIMEOUT = 600  # seconds before gunicorn kills a request
+SQL_MAX_ROW = 100000           # max rows returned to the browser
 
 LOG_LEVEL = "INFO"
 

@@ -1,0 +1,75 @@
+table_name: as_blame_detection_models_are_as_accurate_as_general_response_models
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT model_type AS model_type, level_name AS level_name, AVG(accuracy) AS\
+  \ \"AVG(accuracy)\" \nFROM (SELECT\n    CASE WHEN tm.blame = true THEN 'Blame Model'\
+  \ ELSE 'General Model' END AS model_type,\n    json_extract_scalar(tm.level, '$.name')\
+  \ AS level_name,\n    json_extract_scalar(tm.scene, '$[0].name') AS scene_name,\n\
+  \    tm.accuracy\nFROM trainingmodels tm\nWHERE tm.accuracy IS NOT NULL\nAND json_extract_scalar(tm.level,\
+  \ '$.name') IN ('Demo Snack', 'Demo Train', 'Demo Birthday')\nORDER BY model_type,\
+  \ level_name\n) AS virtual_table GROUP BY model_type, level_name ORDER BY \"AVG(accuracy)\"\
+  \ DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 3f7d5c12-de79-424d-a27f-69445aa5f019
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: model_type
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR(13)
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: AVG(accuracy)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: DOUBLE
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b

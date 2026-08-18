@@ -1,0 +1,93 @@
+table_name: as_drop_off_before_5_where
+main_dttm_col: null
+description: null
+default_endpoint: null
+offset: 0
+cache_timeout: null
+catalog: mongo
+schema: langara-dev-client
+sql: "SELECT scene_no AS scene_no, level_name AS level_name, sum(total_attempts) AS\
+  \ \"SUM(total_attempts)\", sum(scenes_completed) AS \"SUM(scenes_completed)\" \n\
+  FROM (SELECT\n    lf.levelname AS level_name,\n    u.username AS student_name,\n\
+  \    CAST(json_extract_scalar(scene_obj, '$.sceneNo') AS BIGINT) AS scene_no,\n\
+  \    COUNT(*) AS total_attempts,\n    SUM(CASE WHEN json_extract_scalar(scene_obj,\
+  \ '$.sceneComplete') = 'true' THEN 1 ELSE 0 END) AS scenes_completed,\n    COALESCE(ROUND(\n\
+  \        100.0 * SUM(CASE WHEN json_extract_scalar(scene_obj, '$.sceneComplete')\
+  \ = 'true' THEN 1 ELSE 0 END)\n        / NULLIF(COUNT(*), 0), 1\n    ), 0) AS scene_completion_pct\n\
+  FROM levelflows lf\nJOIN users u ON u._id = lf.userid\nCROSS JOIN UNNEST(CAST(lf.scene\
+  \ AS ARRAY(JSON))) AS t(scene_obj)\nWHERE u.role = 'student'\nGROUP BY lf.levelname,\
+  \ u.username, json_extract_scalar(scene_obj, '$.sceneNo')\nORDER BY level_name,\
+  \ scene_no\n) AS virtual_table \nWHERE level_name IN ('Demo Train', 'Demo Snack',\
+  \ 'Demo Birthday', 'Snack Table 3 fake') GROUP BY scene_no, level_name ORDER BY\
+  \ \"SUM(total_attempts)\" DESC;"
+params: null
+template_params: null
+filter_select_enabled: true
+fetch_values_predicate: null
+extra: null
+normalize_columns: false
+always_filter_main_dttm: false
+folders: null
+uuid: 6ce3a052-ce57-4922-99be-4b9cc47a8f49
+metrics:
+- metric_name: count
+  verbose_name: COUNT(*)
+  metric_type: count
+  expression: COUNT(*)
+  description: null
+  d3format: null
+  currency: null
+  extra:
+    warning_markdown: ''
+  warning_text: null
+columns:
+- column_name: SUM(total_attempts)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: SUM(scenes_completed)
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: level_name
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: VARCHAR
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+- column_name: scene_no
+  verbose_name: null
+  is_dttm: false
+  is_active: true
+  type: BIGINT
+  advanced_data_type: null
+  groupby: true
+  filterable: true
+  expression: null
+  description: null
+  python_date_format: null
+  extra: {}
+version: 1.0.0
+database_uuid: 0d99b77b-0adf-45e4-8d52-80900f3f710b
